@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('google_id')->nullable(); // Google ID
-            $table->string('profile_picture')->nullable(); // Profile picture
-            $table->foreignId('role_id')->default(2)->constrained('roles'); // Default: User
+            $table->string('google_id')->nullable();
+            $table->string('profile_picture')->nullable();
+            $table->foreignId('role_id')->default(2)->constrained('roles');
             $table->rememberToken();
             $table->timestamps();
         });
