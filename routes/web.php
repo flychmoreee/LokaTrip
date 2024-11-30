@@ -13,7 +13,7 @@ Route::get('/auth/redirect', [GoogleController::class, 'redirectToGoogle']);
 Route::get('/auth/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 // Rute User
-Route::middleware(['auth', RoleAccessMiddleware::class.':user'])->prefix('user')->group(function () {
+Route::middleware(['auth', RoleAccessMiddleware::class . ':user'])->prefix('user')->group(function () {
     Route::get('/dashboard', function () {
         return response()->json(['message' => 'Welcome to User Dashboard!']);
     });
@@ -24,7 +24,7 @@ Route::middleware(['auth', RoleAccessMiddleware::class.':user'])->prefix('user')
 });
 
 // Rute Admin
-Route::middleware(['auth', RoleAccessMiddleware::class.':admin'])->prefix('admin')->group(function () {
+Route::middleware(['auth', RoleAccessMiddleware::class . ':admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', function () {
         return response()->json(['message' => 'Welcome to Admin Dashboard!']);
     });
@@ -35,6 +35,7 @@ Route::middleware(['auth', RoleAccessMiddleware::class.':admin'])->prefix('admin
 });
 
 // Rute untuk Logout
-Route::get('/unauthorized', function () {
-    return view('welcome');
-});
+Route::post(
+    '/logout',
+    [GoogleController::class, 'logout']
+)->name('logout');

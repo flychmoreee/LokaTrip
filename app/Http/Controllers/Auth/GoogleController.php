@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 class GoogleController extends Controller
 {
@@ -24,13 +26,27 @@ class GoogleController extends Controller
                 'name' => $googleUser->getName(),
                 'google_id' => $googleUser->getId(),
                 'profile_picture' => $googleUser->getAvatar(),
-                'role_id' => 2, 
+                'role_id' => 2,
             ]
         );
 
         Auth::login($user);
+        $user->setRememberToken(Str::random(60));
+        $user->save();
 
-        return redirect('/dashboard');
+        return redirect('user/dashboard');
+    }
+
+    public function logout(Request $request)
+    {
+        // Hapus sesi pengguna
+        Auth::logout();
+
+        // Hapus cookie sesi
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        // Redirect ke halaman login atau halaman lain
+        return redirect('/')->with('message', 'You have been logged out.');
     }
 }
-

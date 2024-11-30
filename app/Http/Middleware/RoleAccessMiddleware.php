@@ -15,12 +15,12 @@ class RoleAccessMiddleware
             return redirect('/auth/redirect')->with('message', 'Please login first.');
         }
 
-        if ($role === 'admin' && $user->role->name !== 'Admin') {
-            return redirect('/unauthorized')->with('message', 'Access denied.');
+        if ($role === 'admin' && $user->role_id !== 1) {
+            return redirect('/')->with('message', 'Access denied.');
         }
 
-        if ($role === 'user' && !in_array($user->role->name, ['Admin', 'User'])) {
-            return redirect('/unauthorized')->with('message', 'Access denied.');
+        if ($role === 'user' && !in_array($user->role_id, [1, 2])) {
+            return redirect('/')->with('message', 'Access denied.');
         }
 
         return $next($request);
