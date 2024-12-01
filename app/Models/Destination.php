@@ -16,4 +16,15 @@ class Destination extends Model
         'thumbnail',
         'category',
     ];
+
+    protected $casts = [
+        'rating' => 'array',
+        'review' => 'array',
+    ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'destination_user')
+            ->withPivot('rating', 'review');
+    }
 }

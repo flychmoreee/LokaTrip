@@ -25,23 +25,29 @@ class TourGuideController extends Controller
 
         $name = $request->name;
 
-        // Store image profile
+        // Simpan gambar profil
         $imagePath = $request->file('image_profile')->store("tour-guide/$name");
 
+        // Buat pesan WhatsApp
+        $location = $request->location;
+        $message = "Halo saya tertarik dengan wisata yang ada di $location";
+
+        // Simpan data tour guide
         TourGuide::create([
             'name' => $request->name,
             'age' => $request->age,
             'email' => $request->email,
-            'phone' => $this->convertPhoneToWaLink($request->phone),
+            'phone' => $this->convertPhoneToWaLink($request->phone, $message),
             'address' => $request->address,
             'gender' => $request->gender,
             'language' => $request->language,
-            'location' => $request->location,
+            'location' => $location,
             'image_profile' => $imagePath,
         ]);
 
         return redirect()->route('tour-guides.index')->with('success', 'Tour guide created successfully.');
     }
+
 
     public function updateTourGuide(Request $request, TourGuide $tourGuide)
     {
@@ -65,11 +71,14 @@ class TourGuideController extends Controller
             $tourGuide->image_profile = $imagePath;
         }
 
+        $location = $request->location;
+        $message = "Halo saya tertarik dengan wisata yang ada di $location";
+
         $tourGuide->update([
             'name' => $request->name,
             'age' => $request->age,
             'email' => $request->email,
-            'phone' => $this->convertPhoneToWaLink($request->phone),
+            'phone' => $this->convertPhoneToWaLink($request->phone, $message),
             'address' => $request->address,
             'gender' => $request->gender,
             'language' => $request->language,
@@ -91,7 +100,7 @@ class TourGuideController extends Controller
         return redirect()->route('tour-guides.index')->with('success', 'Tour guide deleted successfully.');
     }
 
-    private function convertPhoneToWaLink($phone)
+    private function convertPhoneToWaLink($phone, $message = '')
     {
         $phone = preg_replace('/\D/', '', $phone);
 
@@ -99,6 +108,10 @@ class TourGuideController extends Controller
             $phone = '62' . substr($phone, 1);
         }
 
-        return "https://wa.me/$phone";
+        $encodedMessage = urlencode($message);
+
+        return $message
+            ? "https://wa.me/$phone?text=$encodedMessage"
+            : "https://wa.me/$phone";
     }
 }
