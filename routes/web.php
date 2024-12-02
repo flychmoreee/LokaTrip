@@ -12,6 +12,9 @@ use App\Http\Middleware\RoleAccessMiddleware;
 use App\Http\Controllers\Admin\TourGuideController;
 use App\Http\Controllers\Admin\DestinationController;
 
+// Controller untuk User
+use App\Http\Controllers\User\WishlistController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -25,6 +28,9 @@ Route::middleware(['auth', RoleAccessMiddleware::class . ':user'])->prefix('user
     Route::get('/dashboard', function () {
         return response()->json(['message' => 'Welcome to User Dashboard!']);
     });
+
+    Route::post('/wishlist/{destinationId}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
+    Route::delete('/wishlist/{destinationId}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
 });
 
 // Rute Admin

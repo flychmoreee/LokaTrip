@@ -27,4 +27,9 @@ class Destination extends Model
         return $this->belongsToMany(User::class, 'destination_user')
             ->withPivot('rating', 'review');
     }
+
+    public function wishlists()
+    {
+        return $this->hasMany(Wishlist::class);
+    }
 }
