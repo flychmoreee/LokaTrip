@@ -15,6 +15,9 @@ use App\Http\Controllers\Admin\DestinationController;
 // Controller untuk User
 use App\Http\Controllers\User\WishlistController;
 
+// Controller untuk AI
+use App\Http\Controllers\AI\FoodRecomendationController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -31,6 +34,12 @@ Route::middleware(['auth', RoleAccessMiddleware::class . ':user'])->prefix('user
 
     Route::post('/wishlist/{destinationId}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
     Route::delete('/wishlist/{destinationId}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
+
+    Route::post('/food-recommendation', [FoodRecomendationController::class, 'getFoodRecommendation'])->name('food.recommendation');
+
+    Route::get('/food-recommendation', function () {
+        return view('test');
+    });
 });
 
 // Rute Admin
