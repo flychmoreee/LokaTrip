@@ -5,12 +5,13 @@ use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Middleware\RoleAccessMiddleware;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landingPage');
 });
 
 // Rute untuk login
-Route::get('/auth/redirect', [GoogleController::class, 'redirectToGoogle']);
+Route::get('/auth/redirect', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('/auth/callback', [GoogleController::class, 'handleGoogleCallback']);
+
 
 // Rute User
 Route::middleware(['auth', RoleAccessMiddleware::class . ':user'])->prefix('user')->group(function () {
@@ -39,3 +40,4 @@ Route::post(
     '/logout',
     [GoogleController::class, 'logout']
 )->name('logout');
+
