@@ -639,6 +639,10 @@ img {
   background-image: none; 
 }
 
+.FAQ{
+  margin-bottom: 7rem;
+}
+
 
 /*=============== FOOTER ===============*/
 .footer{
@@ -739,6 +743,56 @@ img {
   text-align: center;
 }
 
+.footer__links{
+  padding: 0;
+}
+
+/*=============== MODAL LOGIN ===============*/
+.modal-footer{
+  border: none;
+}
+
+.modal-content{
+  padding: 13px;
+}
+
+.btn-close:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+@keyframes bounce {
+  0%, 100% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-10px);
+  }
+}
+
+.svg-bounce {
+  animation: bounce 1s infinite;
+}
+
+@keyframes fade {
+  0%, 100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+  50% {
+      opacity: 0;
+      transform: translateY(0px);
+      -webkit-transform: translateY(0px);
+      -moz-transform: translateY(0px);
+      -ms-transform: translateY(0px);
+      -o-transform: translateY(0px);
+}
+}
+
+.svg-fade {
+  animation: fade 2s ease-in-out infinite;
+  -webkit-animation: fade 2s ease-in-out infinite;
+}
 
 /*=============== SCROLL BAR ===============*/
 ::-webkit-scrollbar{
