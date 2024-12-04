@@ -11,23 +11,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('wishlists', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('google_id')->nullable();
-            $table->string('profile_picture')->nullable();
-            $table->foreignId('role_id')->default(2)->constrained('roles');
-            $table->rememberToken();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // Relasi ke tabel users
+            $table->foreignId('destination_id')->constrained('destinations')->onDelete('cascade'); // Relasi ke tabel destinations
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('wishlists');
     }
 };

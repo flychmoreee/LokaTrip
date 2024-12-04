@@ -18,4 +18,9 @@ class User extends Authenticatable
         'role_id',
         'remember_token',
     ];
+
+    public function wishlists()
+    {
+        return $this->hasMany(Wishlist::class);
+    }
 }
