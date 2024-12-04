@@ -34,7 +34,7 @@
     <!--=============== SCROLLREVEAL ===============-->
     <script src="/assets/js/scrollreveal.min.js"></script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 
     <!--=============== MAIN JS ===============-->
     <script src="assets/js/main.js"></script>

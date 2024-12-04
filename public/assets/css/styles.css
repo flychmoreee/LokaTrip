@@ -943,7 +943,7 @@ img {
   }
 
   .home__cards {
-    grid-template-columns: repeat(4, 260px);
+    grid-template-columns: repeat(4, 235px);
     margin-top: 7.2rem;
 }
 

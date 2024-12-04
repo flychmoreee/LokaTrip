@@ -45,12 +45,12 @@
              </div>
 
              <h2 class="popular__title">
-                 Garda Lake
+                 Mbedengan
              </h2>
 
              <div class="popular__location">
                  <i class="ri-map-pin-line"></i>
-                 <span>Italy</span>
+                 <span>Tokyo</span>
              </div>
          </article>
 
