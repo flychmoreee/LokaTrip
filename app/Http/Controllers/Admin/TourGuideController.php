@@ -25,10 +25,8 @@ class TourGuideController extends Controller
 
         $name = $request->name;
 
-        // Simpan gambar profil
         $imagePath = $request->file('image_profile')->store("tour-guide/$name");
 
-        // Buat pesan WhatsApp
         $location = $request->location;
         $message = "Halo saya tertarik dengan wisata yang ada di $location";
 
