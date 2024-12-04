@@ -1,58 +1,4 @@
-  <!--==================== HOME ====================-->
-  <section class="home section" id="home">
-      <img src="/assets/img/home-bg.jpg" alt="home image" class="home__bg">
-      <div class="home__shadow"></div>
-
-      <div class="home__container container grid">
-          <div class="home__data">
-              <h3 class="home__subtitle">
-                  Selamat Datang di LokaTrip
-              </h3>
-
-              <h1 class="home__title">
-                  Jelajah <br>
-                  Indonesia
-              </h1>
-
-              <p class="home__description">
-                  Temukan surga tersembunyi di Indonesia dan rencanakan perjalanan impian anda dengan kemudahan dan
-                  bantuan yang didukung AI
-              </p>
-
-              <a class="button" onclick="openLoginModal()">
-                  Mulai Perjalanan Anda <i class="ri-arrow-right-line"></i>
-              </a>
-          </div>
-
-          <div class="home__cards grid">
-              <article class="home__card">
-                  <img src="/assets/img/air-terjun.jpg" alt="home image" class="home__card-img">
-                  <h3 class="home__card-title">Air Terjun</h3>
-                  <div class="home__card-shadow"></div>
-              </article>
-
-              <article class="home__card">
-                  <img src="/assets/img/gunung.jpg" alt="home image" class="home__card-img">
-                  <h3 class="home__card-title">Gunung</h3>
-                  <div class="home__card-shadow"></div>
-              </article>
-
-              <article class="home__card">
-                  <img src="/assets/img/danau.jpg" alt="home image" class="home__card-img">
-                  <h3 class="home__card-title">Danau</h3>
-                  <div class="home__card-shadow"></div>
-              </article>
-
-              <article class="home__card">
-                  <img src="/assets/img/pantai.jpg" alt="home image" class="home__card-img">
-                  <h3 class="home__card-title">Pantai</h3>
-                  <div class="home__card-shadow"></div>
-              </article>
-          </div>
-      </div>
-  </section>
-
-  <div id="loginModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center">
+<div id="loginModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center">
     <div class="bg-white/90 backdrop-blur rounded-2xl shadow-2xl w-full max-w-md p-8 relative transform transition-all duration-300 scale-90 opacity-0 hover:shadow-blue-500/20" id="modalContent">
         <!-- Tombol Close dengan animasi -->
         <button class="absolute top-4 right-4 text-gray-500 hover:text-red-500 hover:rotate-90 transition-all duration-300" onclick="closeLoginModal()">
@@ -90,4 +36,3 @@
         </div>
     </div>
 </div>
-

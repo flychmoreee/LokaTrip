@@ -7,5 +7,5 @@
     <x-guest.section.testimoni></x-guest.section.testimoni>
     <x-guest.section.faq></x-guest.section.faq>
     <x-guest.section.login></x-guest.section.login>
-
+    
 </x-guest.layout>

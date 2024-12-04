@@ -19,7 +19,6 @@
 
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="assets/css/styles.css">
-    <script src="https://cdn.-tailwindcss.com"></script>
 
     <title>Loka Trip Website</title>
 </head>
@@ -31,15 +30,58 @@
         {{ $slot }}
         <x-guest.footer></x-guest.footer>
     </main>
-    <x-guest.login></x-guest.login>
 
     <!--=============== SCROLLREVEAL ===============-->
     <script src="/assets/js/scrollreveal.min.js"></script>
 
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <!--=============== MAIN JS ===============-->
     <script src="assets/js/main.js"></script>
+    
+    
+    <!--=============== JS POPUP LOGIN ===============-->
+    <script>
+        function openLoginModal() {
+            const modal = document.getElementById('loginModal');
+            const content = document.getElementById('modalContent');
+            modal.classList.remove('hidden');
+            // Tambahkan animasi fade in
+            modal.classList.add('animate-fadeIn');
+            setTimeout(() => {
+                content.classList.remove('scale-90', 'opacity-0');
+                content.classList.add('scale-100');
+            }, 50);
+        }
 
-   
+        function closeLoginModal() {
+            const modal = document.getElementById('loginModal');
+            const content = document.getElementById('modalContent');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-90', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('animate-fadeIn');
+            }, 300);
+        }
+    </script>
+
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.3s ease-out;
+        }
+    </style>
+
 </body>
 
 </html>

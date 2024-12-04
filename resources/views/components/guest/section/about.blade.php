@@ -13,7 +13,7 @@
                 menyenangkan.
             </p>
 
-            <a href="#" class="button">
+            <a class="button" onclick="openLoginModal()">
                 Buat Jadwal Sekarang<i class="ri-arrow-right-line"></i>
             </a>
         </div>
