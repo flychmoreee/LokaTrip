@@ -22,10 +22,8 @@ class DestinationController extends Controller
 
         $nameDestination = $request->name;
 
-        // Store thumbnail
         $thumbnailPath = $request->file('thumbnail')->store("destinations/$nameDestination/thumbnail");
 
-        // Store gallery
         $galleryPaths = [];
         if ($request->hasFile('gallery')) {
             foreach ($request->file('gallery') as $image) {
@@ -58,14 +56,12 @@ class DestinationController extends Controller
 
         $nameDestination = $request->name;
 
-        // Update thumbnail
         if ($request->hasFile('thumbnail')) {
             Storage::delete($destination->thumbnail);
             $thumbnailPath = $request->file('thumbnail')->store("destinations/$nameDestination/thumbnail");
             $destination->thumbnail = $thumbnailPath;
         }
 
-        // Update gallery
         if ($request->hasFile('gallery')) {
             $oldGallery = json_decode($destination->gallery, true);
             foreach ($oldGallery as $oldImage) {
@@ -91,14 +87,12 @@ class DestinationController extends Controller
 
     public function deleteDestination(Destination $destination)
     {
-        // Delete thumbnail and gallery
         Storage::delete($destination->thumbnail);
         $gallery = json_decode($destination->gallery, true);
         foreach ($gallery as $image) {
             Storage::delete($image);
         }
 
-        // Delete directory
         $nameDestination = $destination->name;
         Storage::deleteDirectory("destinations/$nameDestination");
 
