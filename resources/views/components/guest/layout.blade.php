@@ -38,49 +38,22 @@
 
     <!--=============== MAIN JS ===============-->
     <script src="assets/js/main.js"></script>
-    
-    
+
+
     <!--=============== JS POPUP LOGIN ===============-->
     <script>
         function openLoginModal() {
-            const modal = document.getElementById('loginModal');
-            const content = document.getElementById('modalContent');
-            modal.classList.remove('hidden');
-            // Tambahkan animasi fade in
-            modal.classList.add('animate-fadeIn');
-            setTimeout(() => {
-                content.classList.remove('scale-90', 'opacity-0');
-                content.classList.add('scale-100');
-            }, 50);
+            const modal = new bootstrap.Modal(document.getElementById('loginModal'));
+            modal.show();
         }
 
+        // Fungsi untuk menutup modal menggunakan Bootstrap
         function closeLoginModal() {
-            const modal = document.getElementById('loginModal');
-            const content = document.getElementById('modalContent');
-            content.classList.remove('scale-100');
-            content.classList.add('scale-90', 'opacity-0');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                modal.classList.remove('animate-fadeIn');
-            }, 300);
+            const modalElement = document.getElementById('loginModal');
+            const modalInstance = bootstrap.Modal.getInstance(modalElement);
+            modalInstance.hide(); // Tutup modal menggunakan API Bootstrap
         }
     </script>
-
-    <style>
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        .animate-fadeIn {
-            animation: fadeIn 0.3s ease-out;
-        }
-    </style>
 
 </body>
 
