@@ -19,6 +19,7 @@ use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\AI\FoodRecomendationController;
 use App\Http\Controllers\AI\TripPlanController;
 use App\Http\Controllers\AI\BudgetRecommendationController;
+use App\Http\Controllers\AI\DestinationRecommendationController;
 
 Route::get('/', function () {
     return view('landingPage');
@@ -73,4 +74,9 @@ Route::get('/food-recommendation', function () {
 Route::post('/budget-recommendation', [BudgetRecommendationController::class, 'getTripPlan'])->name('budget.recommendation');
 Route::get('/budget-recommendation', function () {
     return view('testBudget');
+});
+
+Route::post('/destination-recommendation', [DestinationRecommendationController::class, 'getDestinationRecommendation'])->name('destination.recommendation');
+Route::get('/destination-recommendation', function () {
+    return view('testDestination');
 });
