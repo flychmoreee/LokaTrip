@@ -30,7 +30,6 @@ class TourGuideController extends Controller
         $location = $request->location;
         $message = "Halo saya tertarik dengan wisata yang ada di $location";
 
-        // Simpan data tour guide
         TourGuide::create([
             'name' => $request->name,
             'age' => $request->age,

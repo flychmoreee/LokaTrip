@@ -20,9 +20,9 @@ class FoodRecomendationController extends Controller
 
         $prompt = "Saya mencari makanan khas di daerah $location dengan kategori $category. Berikan saya
                     1. Nama makanan.
-                    2. Lokasi warung atau cafe.
-                    4. Harga makanan atau minuman tersebut.
-                    
+                    2. Deskripsi makanan.
+                    3. Harga makanan atau minuman tersebut.
+                        
                     Dan pastikan tempat tersebut benar benar ada di $location";
 
         $response = Gemini::geminiPro()->generateContent($prompt);

@@ -36,16 +36,6 @@ Route::middleware(['auth', RoleAccessMiddleware::class . ':user'])->prefix('user
 
     Route::post('/wishlist/{destinationId}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
     Route::delete('/wishlist/{destinationId}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
-
-    Route::post('/food-recommendation', [FoodRecomendationController::class, 'getFoodRecommendation'])->name('food.recommendation');
-    // Route::get('/food-recommendation', function () {
-    //     return view('test');
-    // });
-
-    Route::post('/trip-plan', [TripPlanController::class, 'getTripPlan'])->name('trip.plan');
-    Route::get('/trip-plan', function () {
-        return view('test');
-    });
 });
 
 // Rute Admin
@@ -69,3 +59,12 @@ Route::post(
     [GoogleController::class, 'logout']
 )->name('logout');
 
+Route::post('/trip-plan', [TripPlanController::class, 'getTripPlan'])->name('trip.plan');
+Route::get('/trip-plan', function () {
+    return view('testTrip');
+});
+
+Route::post('/food-recommendation', [FoodRecomendationController::class, 'getFoodRecommendation'])->name('food.recommendation');
+Route::get('/food-recommendation', function () {
+    return view('testFood');
+});
