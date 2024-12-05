@@ -18,6 +18,7 @@ use App\Http\Controllers\User\WishlistController;
 // Controller untuk AI
 use App\Http\Controllers\AI\FoodRecomendationController;
 use App\Http\Controllers\AI\TripPlanController;
+use App\Http\Controllers\AI\BudgetRecommendationController;
 
 Route::get('/', function () {
     return view('landingPage');
@@ -67,4 +68,9 @@ Route::get('/trip-plan', function () {
 Route::post('/food-recommendation', [FoodRecomendationController::class, 'getFoodRecommendation'])->name('food.recommendation');
 Route::get('/food-recommendation', function () {
     return view('testFood');
+});
+
+Route::post('/budget-recommendation', [BudgetRecommendationController::class, 'getTripPlan'])->name('budget.recommendation');
+Route::get('/budget-recommendation', function () {
+    return view('testBudget');
 });
