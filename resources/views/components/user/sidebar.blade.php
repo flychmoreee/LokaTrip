@@ -9,7 +9,7 @@
 							<span class="nav-text">{{ $slot }}</span>
 						</a>
                         <ul aria-expanded="false">
-							<li><a href="index.html">Dashboard</a></li>
+							<li><a href="index.html">Home</a></li>
 							<li><a href="project-page.html">Project</a></li>
 				    			<li><a href="contacts.html">Contacts</a></li>
 							<li><a href="kanban.html">Kanban</a></li>
