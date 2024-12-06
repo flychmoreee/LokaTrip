@@ -30,9 +30,9 @@ Route::get('/auth/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 
 // Rute User
-Route::middleware(['auth', RoleAccessMiddleware::class . ':user'])->prefix('user')->group(function () {
+Route::prefix('user')->group(function () {
     Route::get('/dashboard', function () {
-        return response()->json(['message' => 'Welcome to User Dashboard!']);
+        return view( 'dashboardUser');
     });
 
     Route::post('/wishlist/{destinationId}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
@@ -40,7 +40,7 @@ Route::middleware(['auth', RoleAccessMiddleware::class . ':user'])->prefix('user
 });
 
 // Rute Admin
-Route::middleware(['auth', RoleAccessMiddleware::class . ':admin'])->prefix('admin')->group(function () {
+Route::prefix('admin')->group(function () {
     Route::get('/dashboard', function () {
         return response()->json(['message' => 'Welcome to Admin Dashboard!']);
     });

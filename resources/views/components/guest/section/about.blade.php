@@ -19,7 +19,7 @@
         </div>
 
         <div class="about__image">
-            <img src="/assets/img/about-beach.jpg" alt="" class="about__img">
+            <img src="{{ asset('/assets/img/about-beach.jpg') }}" alt="" class="about__img">
             <div class="about__shadow"></div>
         </div>
     </div>

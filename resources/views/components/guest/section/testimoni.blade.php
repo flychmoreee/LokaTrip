@@ -2,7 +2,7 @@
  <section class="testimonial section" id="testimonial">
      <div class="testimonial__container">
          <div class="testimonial__image">
-             <img src="/assets/img/explore-beach.jpg" alt="testimonial image" class="testimonial__img">
+             <img src="{{ asset('/assets/img/explore-beach.jpg') }}" alt="testimonial image" class="testimonial__img">
              <div class="testimonial__shadow"></div>
          </div>
 
@@ -29,7 +29,8 @@
              </div>
 
              <div class="testimonial__user">
-                 <img src="assets/img/explore-perfil.png" alt="testimonial image" class="testimonial__perfil">
+                 <img src="{{ asset('/assets/img/explore-perfil.png') }}" alt="testimonial image"
+                     class="testimonial__perfil">
                  <span class="testimonial__name">Budianto</span>
              </div>
          </div>
