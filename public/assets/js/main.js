@@ -97,6 +97,6 @@ const sr = ScrollReveal({
 
 sr.reveal(`.home__data, .explore__data, .explore__user, .footer__container, .section__popular-title, .section__feature-title, .FAQ__section__title`)
 sr.reveal(`.home__card`, {delay:600, distance: '100px', interval: 100})
-sr.reveal(`.about__data, .testimonial__user`, {origin: 'right'})
-sr.reveal(`.about__image, .join__data, .testimonial__data`, {origin: 'left'})
+sr.reveal(`.about__data`, {origin: 'right'})
+sr.reveal(`.about__image, .join__data`, {origin: 'left'})
 sr.reveal(`.popular__card, .feature__item, .accordion-item`, {interval: 200})
