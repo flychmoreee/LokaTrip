@@ -7,8 +7,8 @@
                 <!-- Search Bar -->
                 <div class="col-md-6 mb-4">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Cari tour guide...">
-                        <button class="btn btn-primary" type="button">Cari</button>
+                        <input type="text" class="form-control" id="search-input" placeholder="Cari tour guide...">
+                        <button class="btn btn-primary" type="button" id="search-btn">Cari</button>
                     </div>
                 </div>
             </div>

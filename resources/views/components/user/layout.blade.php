@@ -68,6 +68,8 @@
     <script src="{{ asset('/assets/js/styleSwitcher.js') }}"></script>
     {{-- sweet alert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script src="{{ asset('/assets/js/jquery.star-rating-svg.js') }}"></script>
 
     <script>
         function cardsCenter() {

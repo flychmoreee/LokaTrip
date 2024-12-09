@@ -120,4 +120,3 @@
         setInterval(showNextTestimonial, 5000);
     });
 </script>
-

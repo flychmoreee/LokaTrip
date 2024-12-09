@@ -26406,15 +26406,12 @@ table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.
     z-index: 2000 !important; /* Pastikan SweetAlert memiliki z-index yang lebih tinggi */
 }
 
-.destination .card-body{
-cursor:pointer;
-}
-
 .wishlist-icon {
   position: absolute;
   top: 10px;
   right: 10px;
   z-index: 1;
+  cursor:pointer;
 }
 
 .wishlist-icon .fa-heart {

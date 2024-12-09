@@ -113,7 +113,7 @@
                             </div>
                             <div class="col-md-7 col-xxl-12">
                                 <div class="new-arrival-content position-relative">
-                                    <h4><a href="ecom-product-detail.html">Danau Toba</a></h4>
+                                    <h4><a href="{{ route('user.detail-product') }}">Danau Toba</a></h4>
                                     <p>Lokasi: <span class="item">Medan, Sumatera Utara</span></p>
 
                                 </div>
@@ -136,7 +136,7 @@
                             </div>
                             <div class="col-md-7 col-xxl-12">
                                 <div class="new-arrival-content position-relative">
-                                    <h4><a href="ecom-product-detail.html">Gunung Bromo</a></h4>
+                                    <h4><a href="{{ route('user.detail-product') }}">Gunung Bromo</a></h4>
                                     <p>Lokasi: <span class="item">Probolinggo, Jawa Timur</span></p>
 
                                 </div>
@@ -159,7 +159,7 @@
                             </div>
                             <div class="col-md-7 col-xxl-12">
                                 <div class="new-arrival-content position-relative">
-                                    <h4><a href="ecom-product-detail.html">Pantai Bingin</a></h4>
+                                    <h4><a href="{{ route('user.detail-product') }}">Pantai Bingin</a></h4>
                                     <p>Lokasi: <span class="item">Badung, Bali</span></p>
 
                                 </div>
