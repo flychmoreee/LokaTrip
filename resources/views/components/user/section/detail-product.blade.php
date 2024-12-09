@@ -73,7 +73,7 @@
                                             <p>Lokasi: <span class="item">Batu, Jawa Timur, Indonesia</span></p>
                                             <div class="wrapper-iframe-gmaps">
                                                 <iframe class="iframe-gmaps"
-                                                    src="https://www.google.com/maps/place/Suryana/@-6.0932358,97.5884235,6z/data=!4m6!3m5!1s0x2e69f5007796b675:0xa448ebe0f7a5c5a4!8m2!3d-6.145353!4d106.8185752!16s%2Fg%2F11vwy56npv?entry=ttu&g_ep=EgoyMDI0MTIwNC4wIKXMDSoASAFQAw%3D%3D"
+                                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.0450103841974!2d112.5868229!3d-7.9525792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e788327315311ff:0x2c5e02db58b12dac!2sRobucca!5e0!3m2!1sen!2sid!4v1692983710289!5m2!1sen!2sid"
                                                     allowfullscreen="" loading="lazy"
                                                     referrerpolicy="no-referrer-when-downgrade">
                                                 </iframe>

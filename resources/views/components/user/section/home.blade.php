@@ -21,6 +21,7 @@
                         </div>
                     </div>
 
+                    {{-- card fitur ai --}}
                     <div class="col-xl-6">
                         <div class="row">
                             <!-- Trip Plan Card -->

@@ -2,67 +2,6 @@
     <div class="content-body">
         <div class="container-fluid">
 
-            {{-- Card AI --}}
-            <div class="row">
-                <!-- Input Section -->
-                <div class="row mb-2">
-                    <div class="col-xl-7">
-                        <div class="row">
-                            <div class="col-xl-11">
-                                <div class="card">
-                                    <div class="card-body tryal column">
-                                        <div class="col-xl-12 col-sm-6">
-                                            <h2>Cari Destinasi Berdasarkan Budget Anda</h2>
-                                            <span class="m-0 mb-3">Masukkan lokasi yang ingin di tuju dan kategori range
-                                                budget untuk
-                                                mendapatkan destinasi yang sesuai.</span>
-                                            <form>
-                                                <div class="mb-3">
-                                                    <label for="location" class="form-label">Lokasi</label>
-                                                    <input type="text" class="form-control" id="location"
-                                                        placeholder="Surabaya">
-                                                </div>
-
-                                                <div class="mb-3">
-                                                    <label for="budget" class="form-label">Budget Anda</label>
-                                                    <input type="text" class="form-control" id="budget"
-                                                        placeholder="Rp 50.000">
-                                                </div>
-
-                                                <div class="text-center">
-                                                    <button type="button"
-                                                        class="btn btn-primary btn-block">Generate</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Output Section -->
-                    <div class="col-xl-5">
-                        <div class="card">
-                            <div class="card-body hasil-generate" style="max-height: 400px; overflow-y: auto;">
-                                <h4>Hasil Generate</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vehicula est id eros
-                                    facilisis, ut auctor justo gravida. Maecenas nec libero vel mauris feugiat
-                                    tincidunt. Aenean a risus non magna viverra suscipit id at neque. Quisque sit amet
-                                    erat et neque dapibus vehicula. Vestibulum vitae tincidunt nisi. Cras sit amet
-                                    tincidunt ex, et pharetra risus. Fusce sed risus eu nisl scelerisque tempus. Sed
-                                    tincidunt accumsan neque. Aenean nec dictum eros.</p>
-                                <p>Integer vulputate purus ut eros congue, quis rutrum metus auctor. Ut ac tortor
-                                    suscipit, gravida felis in, volutpat mauris. Suspendisse et ex id urna vulputate
-                                    interdum at id lorem. Vivamus nec est vehicula, interdum urna sed, mollis risus.
-                                    Proin quis congue lectus, sed tincidunt justo. Cras fringilla dictum augue, nec
-                                    rutrum justo fermentum a. Proin vel tortor augue.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Search and Categories -->
             <div class="row mb-4">
                 <!-- Search Bar -->
@@ -71,14 +10,6 @@
                         <input type="text" class="form-control" placeholder="Cari destinasi...">
                         <button class="btn btn-primary" type="button">Cari</button>
                     </div>
-                </div>
-                <!-- Categories -->
-                <div class="col-md-6 d-flex justify-content-end mb-4">
-                    <button class="btn btn-outline-primary mx-1 p-3" type="button">Populer</button>
-                    <button class="btn btn-outline-primary mx-1 p-3" type="button">Gunung</button>
-                    <button class="btn btn-outline-primary mx-1 p-3" type="button">Pantai</button>
-                    <button class="btn btn-outline-primary mx-1 p-3" type="button">Hutan</button>
-                    <button class="btn btn-outline-primary mx-1 p-3" type="button">Danau</button>
                 </div>
             </div>
             <!-- Card Section -->

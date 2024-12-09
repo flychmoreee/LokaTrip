@@ -47,6 +47,26 @@ Route::prefix('user')->group(function () {
         return view('components.user.section.detail-product');
     })->name('user.detail-product');
 
+    Route::get('/culinary', function () {
+        return view('components.user.section.culinary');
+    })->name('user.culinary');
+
+    Route::get('/wishlist', function () {
+        return view('components.user.section.wishlist');
+    })->name('user.wishlist');
+
+    Route::get('/my-ticket', function () {
+        return view('components.user.section.my-ticket');
+    })->name('user.my-ticket');
+
+    Route::get('/trip-plan', function () {
+        return view('components.user.section.trip-plan');
+    })->name('user.trip-plan');
+
+    Route::get('/history-transaction', function () {
+        return view('components.user.section.history-transaction');
+    })->name('user.history-transaction');
+
     Route::post('/wishlist/{destinationId}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
     Route::delete('/wishlist/{destinationId}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
 });
