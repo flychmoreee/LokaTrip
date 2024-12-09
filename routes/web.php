@@ -32,8 +32,20 @@ Route::get('/auth/callback', [GoogleController::class, 'handleGoogleCallback']);
 // Rute User
 Route::prefix('user')->group(function () {
     Route::get('/dashboard', function () {
-        return view( 'dashboardUser');
+        return view('components.user.section.dashboardUser');
     });
+
+    Route::get('/destination', function () {
+        return view('components.user.section.destination');
+    })->name('user.destination');
+    
+    Route::get('/tour-guide', function () {
+        return view('components.user.section.tour-guide');
+    })->name('user.tour-guide');
+
+    Route::get('/detail-product', function () {
+        return view('components.user.section.detail-product');
+    })->name('user.detail-product');
 
     Route::post('/wishlist/{destinationId}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
     Route::delete('/wishlist/{destinationId}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');

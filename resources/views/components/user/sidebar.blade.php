@@ -4,24 +4,36 @@
 <div class="dlabnav">
     <div class="dlabnav-scroll">
         <ul class="metismenu" id="menu">
-            <li><a class="has-arrow " href="home.blade.php" aria-expanded="false">
+            <!-- Beranda -->
+            <li class="{{ request()->is('user') ? 'active' : '' }}">
+                <a href="{{ url('/user/dashboard') }}">
                     <i class="fas fa-home"></i>
-                    <span class="nav-text">Dashboard</span>
+                    <span class="nav-text">Beranda</span>
                 </a>
             </li>
 
-            <li><a href="widget-basic.html" class="" aria-expanded="false">
-                    <i class="fas fa-user-check"></i>
-                    <span class="nav-text">Widget</span>
+            <!-- Destinasi -->
+            <li class="{{ request()->is('user') ? 'active' : '' }}">
+                <a href="{{ url('/user/destination') }}">
+                    <i class="fas fa-location-dot"></i>
+                    <span class="nav-text">Destinasi</span>
                 </a>
-                <ul aria-expanded="false">
-                    <li><a href="index.html">Dashboard</a></li>
-                    <li><a href="project-page.html">Project</a></li>
-                    <li><a href="contacts.html">Contacts</a></li>
-                    <li><a href="kanban.html">Kanban</a></li>
-                    <li><a href="calendar-page.html">Calendar</a></li>
-                    <li><a href="message.html">Messages</a></li>
-                </ul>
+            </li>
+
+            <!-- Kuliner -->
+            <li class="{{ request()->is('user') ? 'active' : '' }}">
+                <a href="{{ url('/user/culinary') }}">
+                    <i class="fa-solid fa-utensils"></i>
+                    <span class="nav-text">Kuliner</span>
+                </a>
+            </li>
+
+            <!-- Tour Guide -->
+            <li class="{{ request()->is('user') ? 'active' : '' }}">
+                <a href="{{ url('/user/tour-guide') }}">
+                    <i class="fas fa-users"></i>
+                    <span class="nav-text">Tour Guide</span>
+                </a>
             </li>
 
         </ul>

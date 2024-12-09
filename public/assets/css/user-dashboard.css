@@ -26366,10 +26366,10 @@ table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.
     border-left: 0rem solid #c8c8c8;
     border-right: 0rem solid #c8c8c8; }
 
-    .new-arrival-product .new-arrivals-img-contnent {
-      overflow: hidden;
-      border-radius: 14px 14px 0px 0px;
-  }
+.new-arrival-product .new-arrivals-img-contnent {
+    overflow: hidden;
+    border-radius: 14px 14px 0px 0px;
+}
   .new-arrival-product .new-arrivals-img-contnent img {
     width: 100%;
     object-fit: cover;
@@ -26392,6 +26392,41 @@ table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.
 ===================================
     list view
 ===================================*/
+
+.swal2-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.swal2-popup {
+    color: #000 !important; /* Teks menjadi hitam untuk memastikan terlihat */
+}
+
+.swal2-container {
+    z-index: 2000 !important; /* Pastikan SweetAlert memiliki z-index yang lebih tinggi */
+}
+
+.destination .card-body{
+cursor:pointer;
+}
+
+.wishlist-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+}
+
+.wishlist-icon .fa-heart {
+  color: white;
+  border-radius: 50%;
+  transition: color 0.3s;
+}
+
+.wishlist-icon .fa-solid {
+  color: red;
+}
+
 .new-arrival-content .item {
   font-size: 0.75rem;
   color: #6e6e6e; }
