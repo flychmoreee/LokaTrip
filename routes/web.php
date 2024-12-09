@@ -21,6 +21,11 @@ use App\Http\Controllers\AI\TripPlanController;
 use App\Http\Controllers\AI\BudgetRecommendationController;
 use App\Http\Controllers\AI\DestinationRecommendationController;
 
+// Controller untuk Landing Page
+use App\Http\Controllers\LandingPage\HeroController;
+use App\Http\Controllers\LandingPage\AboutUsController;
+use App\Http\Controllers\LandingPage\FaqController;
+
 Route::get('/', function () {
     return view('landingPage');
 });
