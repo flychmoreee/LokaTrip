@@ -29,8 +29,8 @@
             <div class="modal-footer justify-content-center">
                 <a href="{{ route('google.login') }}"
                     class="btn btn-dark d-flex align-items-center gap-2 py-2 px-4 shadow-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="svg-fade"
-                        viewBox="0 0 24 24">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        class="svg-fade" viewBox="0 0 24 24">
                         <path
                             d="M21.35 11.1H12v2.8h5.35C16.8 15.6 14.65 17 12 17c-3.3 0-6-2.7-6-6s2.7-6 6-6c1.5 0 2.8.55 3.8 1.4l2.1-2.1C16.55 3.45 14.4 2.5 12 2.5 6.75 2.5 2.5 6.75 2.5 12S6.75 21.5 12 21.5c5.25 0 9.5-4.25 9.5-9.5 0-.45-.05-.9-.15-1.35z" />
                     </svg>

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class GoogleController extends Controller
 {
@@ -19,6 +20,7 @@ class GoogleController extends Controller
     public function handleGoogleCallback()
     {
         $googleUser = Socialite::driver('google')->user();
+        dd($googleUser);
 
         $user = User::updateOrCreate(
             ['email' => $googleUser->getEmail()],
@@ -30,7 +32,10 @@ class GoogleController extends Controller
             ]
         );
 
+
         Auth::login($user);
+        Log::info('User after updateOrCreate:', $user->toArray());
+
         $user->setRememberToken(Str::random(60));
         $user->save();
 

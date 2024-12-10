@@ -44,7 +44,7 @@ Route::prefix('user')->group(function () {
     Route::get('/destination', function () {
         return view('components.user.section.destination');
     })->name('user.destination');
-    
+
     Route::get('/tour-guide', function () {
         return view('components.user.section.tour-guide');
     })->name('user.tour-guide');
