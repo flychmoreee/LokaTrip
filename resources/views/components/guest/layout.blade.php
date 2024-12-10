@@ -12,13 +12,13 @@
     </script>
 
     <!--=============== FAVICON ===============-->
-    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('/assets/img/favicon.png') }}" type="image/x-icon">
 
     <!--=============== REMIXICONS ===============-->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="{{ asset('/assets/css/styles.css') }}">
 
     <title>Loka Trip Website</title>
 </head>
@@ -32,12 +32,12 @@
     </main>
 
     <!--=============== SCROLLREVEAL ===============-->
-    <script src="/assets/js/scrollreveal.min.js"></script>
+    <script src="{{ asset('/assets/js/scrollreveal.min.js') }}"></script>
 
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 
     <!--=============== MAIN JS ===============-->
-    <script src="assets/js/main.js"></script>
+    <script src="{{ asset('/assets/js/main.js') }}"></script>
 
 
     <!--=============== JS POPUP LOGIN ===============-->

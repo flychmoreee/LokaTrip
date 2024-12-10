@@ -8,7 +8,7 @@
      <div class="popular__container container grid">
          <article class="popular__card">
              <div class="popular__image">
-                 <img src="/assets/img/pantai-bingin.jpg" alt="popular image" class="popular__img">
+                 <img src="{{ asset('/assets/img/pantai-bingin.jpg') }}" alt="popular image" class="popular__img">
                  <div class="popular__shadow"></div>
              </div>
 
@@ -24,7 +24,7 @@
 
          <article class="popular__card">
              <div class="popular__image">
-                 <img src="/assets/img/popular-forest.jpg" alt="popular image" class="popular__img">
+                 <img src="{{ asset('/assets/img/popular-forest.jpg') }}" alt="popular image" class="popular__img">
                  <div class="popular__shadow"></div>
              </div>
 
@@ -40,7 +40,7 @@
 
          <article class="popular__card">
              <div class="popular__image">
-                 <img src="/assets/img/popular-lake.jpg" alt="popular image" class="popular__img">
+                 <img src="{{ asset('/assets/img/popular-lake.jpg') }}" alt="popular image" class="popular__img">
                  <div class="popular__shadow"></div>
              </div>
 
@@ -56,7 +56,7 @@
 
          <article class="popular__card">
              <div class="popular__image">
-                 <img src="/assets/img/popular-forest.jpg" alt="popular image" class="popular__img">
+                 <img src="{{ asset('/assets/img/popular-forest.jpg') }}" alt="popular image" class="popular__img">
                  <div class="popular__shadow"></div>
              </div>
 
@@ -72,7 +72,7 @@
 
          <article class="popular__card">
              <div class="popular__image">
-                 <img src="/assets/img/popular-forest.jpg" alt="popular image" class="popular__img">
+                 <img src="{{ asset('/assets/img/popular-forest.jpg') }}" alt="popular image" class="popular__img">
                  <div class="popular__shadow"></div>
              </div>
 
@@ -88,7 +88,7 @@
 
          <article class="popular__card">
              <div class="popular__image">
-                 <img src="/assets/img/popular-forest.jpg" alt="popular image" class="popular__img">
+                 <img src="{{ asset('/assets/img/popular-forest.jpg') }}" alt="popular image" class="popular__img">
                  <div class="popular__shadow"></div>
              </div>
 
