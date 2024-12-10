@@ -1,20 +1,68 @@
 <div class="dlabnav">
     <div class="dlabnav-scroll">
         <ul class="metismenu" id="menu">
-            <!-- Dashboard Section -->
-            <li>
-                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
+            <!-- Beranda -->
+            <li class="{{ request()->is('user') ? 'active' : '' }}">
+                <a href="{{ url('/user/dashboard') }}">
                     <i class="fas fa-home"></i>
-                    <span class="nav-text">Dashboard</span>
+                    <span class="nav-text">Beranda</span>
                 </a>
-                <ul aria-expanded="false">
-                    <li><a href="index.html">Dashboard</a></li>
-                    <li><a href="project-page.html">Project</a></li>
-                    <li><a href="contacts.html">Contacts</a></li>
-                    <li><a href="kanban.html">Kanban</a></li>
-                    <li><a href="calendar-page.html">Calendar</a></li>
-                    <li><a href="message.html">Messages</a></li>
-                </ul>
+            </li>
+
+            <!-- Destinasi -->
+            <li class="{{ request()->is('user') ? 'active' : '' }}">
+                <a href="{{ url('/user/destination') }}">
+                    <i class="fas fa-location-dot"></i>
+                    <span class="nav-text">Destinasi</span>
+                </a>
+            </li>
+
+            <!-- Kuliner -->
+            <li class="{{ request()->is('user') ? 'active' : '' }}">
+                <a href="{{ url('/user/culinary') }}">
+                    <i class="fa-solid fa-utensils"></i>
+                    <span class="nav-text">Kuliner</span>
+                </a>
+            </li>
+
+            <!-- Tour Guide -->
+            <li class="{{ request()->is('user') ? 'active' : '' }}">
+                <a href="{{ url('/user/tour-guide') }}">
+                    <i class="fas fa-users"></i>
+                    <span class="nav-text">Tour Guide</span>
+                </a>
+            </li>
+
+            <!-- History Transaction -->
+            <li class="{{ request()->is('user') ? 'active' : '' }}">
+                <a href="{{ url('/user/trip-plan') }}">
+                    <i class="fa-solid fa-book-open-reader"></i>
+                    <span class="nav-text">Rencana Perjalanan</span>
+                </a>
+            </li>
+
+            <!-- History Transaction -->
+            <li class="{{ request()->is('user') ? 'active' : '' }}">
+                <a href="{{ url('/user/my-ticket') }}">
+                    <i class="fa-solid fa-ticket"></i>
+                    <span class="nav-text">Tiket Saya</span>
+                </a>
+            </li>
+
+            <!-- Wishlist -->
+            <li class="{{ request()->is('user') ? 'active' : '' }}">
+                <a href="{{ url('/user/wishlist') }}">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="nav-text">Wishlist</span>
+                </a>
+            </li>
+
+            <!-- Wishlist -->
+            <li class="{{ request()->is('user') ? 'active' : '' }}">
+                <a href="{{ url('/user/history-transaction') }}">
+                    <i class="fa-solid fa-money-bill"></i>
+                    <span class="nav-text">History Pembayaran</span>
+                </a>
             </li>
 
             <!-- Apps Section -->

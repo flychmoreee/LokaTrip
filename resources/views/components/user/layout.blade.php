@@ -19,7 +19,10 @@
     <link href="{{ asset('/assets/css/nice-select.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/css/owl.carousel.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/assets/css/nouislider.min.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {{-- Font Awesome --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Style css -->
     <link href="{{ asset('/assets/css/user-dashboard.css') }}" rel="stylesheet">
@@ -63,6 +66,11 @@
     <script src="{{ asset('/assets/js/dlabnav-init.js') }} "></script>
     <script src="{{ asset('/assets/js/demo.js') }} "></script>
     <script src="{{ asset('/assets/js/styleSwitcher.js') }}"></script>
+    {{-- sweet alert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script src="{{ asset('/assets/js/jquery.star-rating-svg.js') }}"></script>
+
     <script>
         function cardsCenter() {
 

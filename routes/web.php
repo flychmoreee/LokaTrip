@@ -32,8 +32,40 @@ Route::get('/auth/callback', [GoogleController::class, 'handleGoogleCallback']);
 // Rute User
 Route::prefix('user')->group(function () {
     Route::get('/dashboard', function () {
-        return view( 'dashboardUser');
+        return view('components.user.section.dashboardUser');
     });
+
+    Route::get('/destination', function () {
+        return view('components.user.section.destination');
+    })->name('user.destination');
+    
+    Route::get('/tour-guide', function () {
+        return view('components.user.section.tour-guide');
+    })->name('user.tour-guide');
+
+    Route::get('/detail-product', function () {
+        return view('components.user.section.detail-product');
+    })->name('user.detail-product');
+
+    Route::get('/culinary', function () {
+        return view('components.user.section.culinary');
+    })->name('user.culinary');
+
+    Route::get('/wishlist', function () {
+        return view('components.user.section.wishlist');
+    })->name('user.wishlist');
+
+    Route::get('/my-ticket', function () {
+        return view('components.user.section.my-ticket');
+    })->name('user.my-ticket');
+
+    Route::get('/trip-plan', function () {
+        return view('components.user.section.trip-plan');
+    })->name('user.trip-plan');
+
+    Route::get('/history-transaction', function () {
+        return view('components.user.section.history-transaction');
+    })->name('user.history-transaction');
 
     Route::post('/wishlist/{destinationId}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
     Route::delete('/wishlist/{destinationId}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
