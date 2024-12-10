@@ -1,18 +1,11 @@
-<!--**********************************
-            Sidebar start
-        ***********************************-->
 <div class="dlabnav">
     <div class="dlabnav-scroll">
         <ul class="metismenu" id="menu">
-            <li><a class="has-arrow " href="home.blade.php" aria-expanded="false">
+            <!-- Dashboard Section -->
+            <li>
+                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
                     <i class="fas fa-home"></i>
                     <span class="nav-text">Dashboard</span>
-                </a>
-            </li>
-
-            <li><a href="widget-basic.html" class="" aria-expanded="false">
-                    <i class="fas fa-user-check"></i>
-                    <span class="nav-text">Widget</span>
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="index.html">Dashboard</a></li>
@@ -24,9 +17,32 @@
                 </ul>
             </li>
 
+            <!-- Apps Section -->
+            <li>
+                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
+                    <i class="fas fa-info-circle"></i>
+                    <span class="nav-text">Apps</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="app-profile.html">Profile</a></li>
+                    <li><a href="post-details.html">Post Details</a></li>
+
+                    <!-- Email Submenu -->
+                    <li>
+                        <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">Email</a>
+                        <ul aria-expanded="false">
+                            <li><a href="email-compose.html">Compose</a></li>
+                            <li><a href="email-inbox.html">Inbox</a></li>
+                            <li><a href="email-read.html">Read</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="app-calender.html">Calendar</a></li>
+
+                    <!-- Shop Submenu -->
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>
-<!--**********************************
-            Sidebar end
-        ***********************************-->
