@@ -1,6 +1,3 @@
-<!--**********************************
-            Sidebar start
-        ***********************************-->
 <div class="dlabnav">
     <div class="dlabnav-scroll">
         <ul class="metismenu" id="menu">
@@ -68,9 +65,32 @@
                 </a>
             </li>
 
+            <!-- Apps Section -->
+            <li>
+                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
+                    <i class="fas fa-info-circle"></i>
+                    <span class="nav-text">Apps</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="app-profile.html">Profile</a></li>
+                    <li><a href="post-details.html">Post Details</a></li>
+
+                    <!-- Email Submenu -->
+                    <li>
+                        <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">Email</a>
+                        <ul aria-expanded="false">
+                            <li><a href="email-compose.html">Compose</a></li>
+                            <li><a href="email-inbox.html">Inbox</a></li>
+                            <li><a href="email-read.html">Read</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="app-calender.html">Calendar</a></li>
+
+                    <!-- Shop Submenu -->
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>
-<!--**********************************
-            Sidebar end
-        ***********************************-->

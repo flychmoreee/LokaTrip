@@ -76,8 +76,12 @@ Route::middleware('auth')->prefix('user')->group(function () {
 // Rute Admin
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/dashboard', function () {
-        return response()->json(['message' => 'Welcome to Admin Dashboard!']);
-    })->name('admin.dashboard');
+        return view('components.admin.section.destination');
+    })->name('admin.destination');
+
+    Route::get('/tour-guides', function () {
+        return view('components.admin.section.tour-guides');
+    })->name('admin.tour-guides');
 
     Route::post('/tour-guides', [TourGuideController::class, 'addTourGuide'])->name('tour-guides.add');
     Route::put('/tour-guides/{tourGuide}', [TourGuideController::class, 'updateTourGuide'])->name('tour-guides.update');
