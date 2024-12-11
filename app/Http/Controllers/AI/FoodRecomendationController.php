@@ -5,6 +5,8 @@ namespace App\Http\Controllers\AI;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Gemini\Laravel\Facades\Gemini;
+use App\Models\FoodPrompt;
+use Illuminate\Support\Facades\Auth;
 
 class FoodRecomendationController extends Controller
 {
@@ -28,12 +30,13 @@ class FoodRecomendationController extends Controller
         $response = Gemini::geminiPro()->generateContent($prompt);
 
         if (isset($response)) {
-            return response()->json([
-                'status' => 'success',
-                'data' => $response->text()
+            // Save response to database
+            FoodPrompt::create([
+                'user_id' => Auth::id(),
+                'prompt' => $response->text()
             ]);
         }
 
-        return response()->json(['status' => 'error', 'message' => 'Unable to generate recommendation.']);
+        return redirect()->route('user.food');
     }
 }

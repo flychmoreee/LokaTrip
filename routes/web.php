@@ -11,15 +11,13 @@ use App\Http\Middleware\RoleAccessMiddleware;
 // Controller untuk Admin
 use App\Http\Controllers\Admin\TourGuideController;
 use App\Http\Controllers\Admin\DestinationController;
-
 // Controller untuk User
 use App\Http\Controllers\User\WishlistController;
-
+use App\Http\Controllers\User\MenuViewController;
 // Controller untuk AI
 use App\Http\Controllers\AI\FoodRecomendationController;
 use App\Http\Controllers\AI\TripPlanController;
 use App\Http\Controllers\AI\BudgetRecommendationController;
-use App\Http\Controllers\AI\DestinationRecommendationController;
 
 // Controller untuk Landing Page
 use App\Http\Controllers\LandingPage\HeroController;
@@ -36,14 +34,15 @@ Route::get('/auth/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 
 // Rute User
-Route::prefix('user')->group(function () {
+Route::middleware('auth')->prefix('user')->group(function () {
     Route::get('/dashboard', function () {
         return view('components.user.section.dashboardUser');
-    });
+    })->name('user.dashboard');
 
-    Route::get('/destination', function () {
-        return view('components.user.section.destination');
-    })->name('user.destination');
+    // Route untuk menu user
+    Route::get('/destination', [MenuViewController::class, 'showDestination'])->name('user.destination');
+    Route::get('/culinary', [MenuViewController::class, 'showFood'])->name('user.food');
+    Route::get('/trip-plan', [MenuViewController::class, 'showTrip'])->name('user.trip');
 
     Route::get('/tour-guide', function () {
         return view('components.user.section.tour-guide');
@@ -53,10 +52,6 @@ Route::prefix('user')->group(function () {
         return view('components.user.section.detail-product');
     })->name('user.detail-product');
 
-    Route::get('/culinary', function () {
-        return view('components.user.section.culinary');
-    })->name('user.culinary');
-
     Route::get('/wishlist', function () {
         return view('components.user.section.wishlist');
     })->name('user.wishlist');
@@ -65,23 +60,24 @@ Route::prefix('user')->group(function () {
         return view('components.user.section.my-ticket');
     })->name('user.my-ticket');
 
-    Route::get('/trip-plan', function () {
-        return view('components.user.section.trip-plan');
-    })->name('user.trip-plan');
-
     Route::get('/history-transaction', function () {
         return view('components.user.section.history-transaction');
     })->name('user.history-transaction');
 
     Route::post('/wishlist/{destinationId}', [WishlistController::class, 'addToWishlist'])->name('wishlist.add');
     Route::delete('/wishlist/{destinationId}', [WishlistController::class, 'removeFromWishlist'])->name('wishlist.remove');
+
+    // Route for AI
+    Route::post('/trip-plan', [TripPlanController::class, 'getTripPlan'])->name('trip.plan');
+    Route::post('/food-recommendation', [FoodRecomendationController::class, 'getFoodRecommendation'])->name('food.recommendation');
+    Route::post('/budget-recommendation', [BudgetRecommendationController::class, 'getBudgetRecommendation'])->name('budget.recommendation');
 });
 
 // Rute Admin
-Route::prefix('admin')->group(function () {
+Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/dashboard', function () {
         return response()->json(['message' => 'Welcome to Admin Dashboard!']);
-    });
+    })->name('admin.dashboard');
 
     Route::post('/tour-guides', [TourGuideController::class, 'addTourGuide'])->name('tour-guides.add');
     Route::put('/tour-guides/{tourGuide}', [TourGuideController::class, 'updateTourGuide'])->name('tour-guides.update');
@@ -97,23 +93,3 @@ Route::post(
     '/logout',
     [GoogleController::class, 'logout']
 )->name('logout');
-
-Route::post('/trip-plan', [TripPlanController::class, 'getTripPlan'])->name('trip.plan');
-Route::get('/trip-plan', function () {
-    return view('testTrip');
-});
-
-Route::post('/food-recommendation', [FoodRecomendationController::class, 'getFoodRecommendation'])->name('food.recommendation');
-Route::get('/food-recommendation', function () {
-    return view('testFood');
-});
-
-Route::post('/budget-recommendation', [BudgetRecommendationController::class, 'getTripPlan'])->name('budget.recommendation');
-Route::get('/budget-recommendation', function () {
-    return view('testBudget');
-});
-
-Route::post('/destination-recommendation', [DestinationRecommendationController::class, 'getDestinationRecommendation'])->name('destination.recommendation');
-Route::get('/destination-recommendation', function () {
-    return view('testDestination');
-});

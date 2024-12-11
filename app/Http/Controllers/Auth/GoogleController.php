@@ -17,10 +17,9 @@ class GoogleController extends Controller
         return Socialite::driver('google')->redirect();
     }
 
-    public function handleGoogleCallback()
+    public function handleGoogleCallback(Request $request)
     {
         $googleUser = Socialite::driver('google')->user();
-        dd($googleUser);
 
         $user = User::updateOrCreate(
             ['email' => $googleUser->getEmail()],
@@ -39,7 +38,7 @@ class GoogleController extends Controller
         $user->setRememberToken(Str::random(60));
         $user->save();
 
-        return redirect('user/dashboard');
+        return redirect()->route('user.dashboard');
     }
 
     public function logout(Request $request)
