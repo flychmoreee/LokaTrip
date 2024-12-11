@@ -9,11 +9,12 @@ use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Middleware\RoleAccessMiddleware;
 
 // Controller untuk Admin
+use App\Http\Controllers\Admin\ViewMenuAdminController;
 use App\Http\Controllers\Admin\TourGuideController;
-use App\Http\Controllers\Admin\DestinationController;
 // Controller untuk User
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\MenuViewController;
+
 // Controller untuk AI
 use App\Http\Controllers\AI\FoodRecomendationController;
 use App\Http\Controllers\AI\TripPlanController;
@@ -75,21 +76,10 @@ Route::middleware('auth')->prefix('user')->group(function () {
 
 // Rute Admin
 Route::middleware('auth')->prefix('admin')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('components.admin.section.destination');
-    })->name('admin.destination');
-
-    Route::get('/tour-guides', function () {
-        return view('components.admin.section.tour-guides');
-    })->name('admin.tour-guides');
-
-    Route::post('/tour-guides', [TourGuideController::class, 'addTourGuide'])->name('tour-guides.add');
-    Route::put('/tour-guides/{tourGuide}', [TourGuideController::class, 'updateTourGuide'])->name('tour-guides.update');
-    Route::delete('/tour-guides/{tourGuide}', [TourGuideController::class, 'deleteTourGuide'])->name('tour-guides.delete');
-
-    Route::post('/destinations', [DestinationController::class, 'addDestination'])->name('destinations.add');
-    Route::put('/destinations/{destination}', [DestinationController::class, 'updateDestination'])->name('destinations.update');
-    Route::delete('/destinations/{destination}', [DestinationController::class, 'deleteDestination'])->name('destinations.delete');
+    Route::get('/dashboard', [ViewMenuAdminController::class, 'showDestination'])->name('admin.destination');
+    Route::get('/tour-guides', [ViewMenuAdminController::class, 'showTourGuide'])->name('admin.tour-guides');
+    Route::post('/tour-guides', [TourGuideController::class, 'store']);
+    Route::post('/tour-guides/update', [TourGuideController::class, 'update'])->name('tour-guides.update');
 });
 
 // Rute untuk Logout
