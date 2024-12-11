@@ -9,10 +9,20 @@
                         <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
                     </svg>
                 </span>
-                <span class="logo-text">My-Task</span>
+                <span class="logo-text">LokaTrip</span>
             </a>
             <!-- Menu: main ul -->
             <ul class="menu-list flex-grow-1 mt-3">
+                <li class="collapsed">
+                    <a class="m-link" data-bs-toggle="collapse" data-bs-target="#menu-Componentsone" href="#"><i
+                            class="icofont-home fs-5"></i> <span>Landing Page</span> <span class="arrow icofont-dotted-down ms-auto text-end fs-5"></span></a>
+                    <!-- Menu: Sub menu ul -->
+                    <ul class="sub-menu collapse" id="menu-Componentsone">
+                        <li><a class="ms-link" href="{{ route('admin.hero') }}"><span>Hero</span></a></li>
+                        <li><a class="ms-link" href="{{ route('admin.about-us') }}"><span>About Us</span></a></li>
+                        <li><a class="ms-link" href="{{ route('admin.faq') }}"><span>FAQ</span></a></li>
+                    </ul>
+                </li>
                 <li class="collapsed">
                     <a class="m-link {{ request()->routeIs('admin.destination') ? 'active' : '' }}" href="{{ route('admin.destination') }}">
                         <i class="icofont-map-pins fs-5"></i> <span>Destinasi Wisata</span>

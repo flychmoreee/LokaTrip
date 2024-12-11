@@ -83,7 +83,85 @@
 
         <!-- Tour Guide List Container -->
         <div class="row g-3 row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-2 row-deck py-1 pb-4" id="tourGuideContainer">
-            <!-- Tour guides will be added here dynamically -->
+            
+            <!-- Card Tour Guid -->
+            <div class="col">
+                <div class="card teacher-card">
+                    <div class="card-body d-flex">
+                        <div class="profile-av pe-xl-4 pe-md-2 pe-sm-4 pe-4 text-center w220">
+                            <img src="{{ asset('assets/images/tour-guide1.jpg') }}" alt="" class="avatar xl rounded-circle img-thumbnail shadow-sm guide-image">
+                            <div class="about-info d-flex align-items-center mt-1 justify-content-center flex-column">
+                                <h6 class="mb-0 fw-bold d-block fs-6 mt-2">Tour Guide</h6>
+                                <div class="btn-group mt-2" role="group">
+                                    <button type="button" class="btn btn-outline-secondary edit-guide" data-id="1">
+                                        <i class="icofont-edit text-success"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary delete-guide" data-id="1">
+                                        <i class="icofont-ui-delete text-danger"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="teacher-info border-start ps-xl-4 ps-md-3 ps-sm-4 ps-4 w-100">
+                            <h6 class="mb-0 mt-2 fw-bold d-block fs-6 guide-nama">Rafi Tour</h6>
+                            <div class="video-setting-icon mt-3 pt-3 border-top">
+                                <p>
+                                    <i class="icofont-whatsapp me-2"></i>WhatsApp: <span class="guide-whatsapp">6281234567890</span><br>
+                                    <i class="icofont-instagram me-2"></i>Instagram: <span class="guide-instagram">@rafitour</span>
+                                </p>
+                            </div>
+                            <div class="d-flex flex-wrap align-items-center ct-btn-set">
+                                <a href="https://wa.me/6281234567890" class="btn btn-dark btn-sm mt-1 me-1 whatsapp-link">
+                                    <i class="icofont-whatsapp me-2 fs-6"></i>Chat WhatsApp
+                                </a>
+                                <a href="https://instagram.com/rafitour" class="btn btn-dark btn-sm mt-1 instagram-link">
+                                    <i class="icofont-instagram me-2 fs-6"></i>Lihat Instagram
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Tour Guide Kedua -->
+            <div class="col">
+                <div class="card teacher-card">
+                    <div class="card-body d-flex">
+                        <div class="profile-av pe-xl-4 pe-md-2 pe-sm-4 pe-4 text-center w220">
+                            <img src="{{ asset('assets/images/tour-guide2.jpg') }}" alt="" class="avatar xl rounded-circle img-thumbnail shadow-sm guide-image">
+                            <div class="about-info d-flex align-items-center mt-1 justify-content-center flex-column">
+                                <h6 class="mb-0 fw-bold d-block fs-6 mt-2">Tour Guide</h6>
+                                <div class="btn-group mt-2" role="group">
+                                    <button type="button" class="btn btn-outline-secondary edit-guide" data-id="2">
+                                        <i class="icofont-edit text-success"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary delete-guide" data-id="2">
+                                        <i class="icofont-ui-delete text-danger"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="teacher-info border-start ps-xl-4 ps-md-3 ps-sm-4 ps-4 w-100">
+                            <h6 class="mb-0 mt-2 fw-bold d-block fs-6 guide-nama">Budi Adventure</h6>
+                            <div class="video-setting-icon mt-3 pt-3 border-top">
+                                <p>
+                                    <i class="icofont-whatsapp me-2"></i>WhatsApp: <span class="guide-whatsapp">6287654321098</span><br>
+                                    <i class="icofont-instagram me-2"></i>Instagram: <span class="guide-instagram">@budiadventure</span>
+                                </p>
+                            </div>
+                            <div class="d-flex flex-wrap align-items-center ct-btn-set">
+                                <a href="https://wa.me/6287654321098" class="btn btn-dark btn-sm mt-1 me-1 whatsapp-link">
+                                    <i class="icofont-whatsapp me-2 fs-6"></i>Chat WhatsApp
+                                </a>
+                                <a href="https://instagram.com/budiadventure" class="btn btn-dark btn-sm mt-1 instagram-link">
+                                    <i class="icofont-instagram me-2 fs-6"></i>Lihat Instagram
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </div>
 </div>
@@ -227,42 +305,18 @@
 <!-- Script untuk menangani logika -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-const elements = {
-    container: document.getElementById('tourGuideContainer'),
-    createForm: document.getElementById('createTourGuideForm'),
-    editForm: document.getElementById('editTourGuideForm'),
-    template: document.getElementById('tourGuideTemplate'),
-    deleteModal: new bootstrap.Modal(document.getElementById('deleteproject')),
-    searchInput: document.getElementById('searchInput'),
-    searchButton: document.getElementById('addon-wrapping')
-};
+    // Elemen yang dibutuhkan
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('addon-wrapping');
+    const container = document.getElementById('tourGuideContainer');
 
-let tourGuideToDelete = null;
-
-// Fungsi utilitas
-const utils = {
-    getCard: id => document.querySelector(`.edit-guide[data-id="${id}"]`).closest('.col'),
-    processImage: (file, callback) => {
-        const reader = new FileReader();
-        reader.onload = e => callback(e.target.result);
-        reader.readAsDataURL(file);
-    },
-    updateCardData: (card, data) => {
-        card.querySelector('.guide-nama').textContent = data.nama;
-        card.querySelector('.guide-whatsapp').textContent = data.whatsapp;
-        card.querySelector('.guide-instagram').textContent = data.instagram;
-        card.querySelector('.whatsapp-link').href = `https://wa.me/${data.whatsapp}`;
-        card.querySelector('.instagram-link').href = `https://instagram.com/${data.instagram.replace('@', '')}`;
-        if (data.imageUrl) card.querySelector('.guide-image').src = data.imageUrl;
+    // Fungsi pencarian
+    function normalizeText(text) {
+        return text.toLowerCase().trim();
     }
-};
-
-// Tambahkan fungsi pencarian
-const searchUtils = {
-    normalizeText: (text) => text.toLowerCase().trim(),
     
-    filterTourGuides: (searchTerm) => {
-        const cards = elements.container.querySelectorAll('.col');
+    function filterTourGuides(searchTerm) {
+        const cards = container.querySelectorAll('.col');
         let foundResults = false;
         
         cards.forEach(card => {
@@ -273,7 +327,7 @@ const searchUtils = {
             };
 
             const matches = Object.values(searchableFields).some(value => 
-                searchUtils.normalizeText(value).includes(searchTerm)
+                normalizeText(value).includes(searchTerm)
             );
 
             card.style.display = matches ? '' : 'none';
@@ -295,120 +349,39 @@ const searchUtils = {
                     Tidak ada tour guide yang ditemukan dengan kata kunci "${searchTerm}"
                 </div>
             `;
-            elements.container.appendChild(message);
+            container.appendChild(message);
         }
-    },
+    }
 
-    handleSearch: () => {
-        const searchTerm = searchUtils.normalizeText(elements.searchInput.value);
-        searchUtils.filterTourGuides(searchTerm);
-    },
+    function handleSearch() {
+        const searchTerm = normalizeText(searchInput.value);
+        filterTourGuides(searchTerm);
+    }
 
-    initializeSearch: () => {
-        // Event untuk input pencarian (real-time)
-        elements.searchInput.addEventListener('input', searchUtils.handleSearch);
-        
-        // Event untuk tombol search
-        elements.searchButton.addEventListener('click', searchUtils.handleSearch);
-        
-        // Event untuk pencarian dengan Enter
-        elements.searchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                searchUtils.handleSearch();
-            }
+    // Event listeners untuk pencarian
+    searchInput.addEventListener('input', handleSearch);
+    searchButton.addEventListener('click', handleSearch);
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSearch();
+        }
+    });
+
+    // Event listener untuk tombol delete
+    document.querySelectorAll('.delete-guide').forEach(button => {
+        button.addEventListener('click', function() {
+            const card = this.closest('.col');
+            const deleteModal = new bootstrap.Modal(document.getElementById('deleteproject'));
+            
+            document.querySelector('#deleteproject .btn-danger').onclick = function() {
+                card.remove();
+                deleteModal.hide();
+            };
+            
+            deleteModal.show();
         });
-    }
-};
-
-// Inisialisasi pencarian
-searchUtils.initializeSearch();
-
-// Event Handlers
-const handlers = {
-    create: () => {
-        const formData = new FormData(elements.createForm);
-        const fileInput = elements.createForm.querySelector('input[type="file"]');
-        
-        if (fileInput.files[0]) {
-            utils.processImage(fileInput.files[0], imageUrl => {
-                const clone = elements.template.content.cloneNode(true);
-                utils.updateCardData(clone, {
-                    id: Date.now(),
-                    nama: formData.get('nama'),
-                    whatsapp: formData.get('whatsapp'),
-                    instagram: formData.get('instagram'),
-                    imageUrl: imageUrl
-                });
-                elements.container.appendChild(clone);
-                elements.createForm.reset();
-                bootstrap.Modal.getInstance(document.getElementById('createproject')).hide();
-            });
-        }
-    },
-
-    edit: (id, card) => {
-        const data = {
-            nama: card.querySelector('.guide-nama').textContent,
-            whatsapp: card.querySelector('.guide-whatsapp').textContent,
-            instagram: card.querySelector('.guide-instagram').textContent
-        };
-        
-        Object.keys(data).forEach(key => {
-            elements.editForm.querySelector(`[name="edit${key.charAt(0).toUpperCase() + key.slice(1)}"]`).value = data[key];
-        });
-        elements.editForm.querySelector('[name="editId"]').value = id;
-        new bootstrap.Modal(document.getElementById('editTourGuideModal')).show();
-    },
-
-    update: () => {
-        const card = utils.getCard(elements.editForm.querySelector('[name="editId"]').value);
-        const fileInput = elements.editForm.querySelector('[name="editFoto"]');
-        
-        const updateData = {
-            nama: elements.editForm.querySelector('[name="editNama"]').value,
-            whatsapp: elements.editForm.querySelector('[name="editWhatsapp"]').value,
-            instagram: elements.editForm.querySelector('[name="editInstagram"]').value
-        };
-
-        if (fileInput.files[0]) {
-            utils.processImage(fileInput.files[0], imageUrl => {
-                updateData.imageUrl = imageUrl;
-                utils.updateCardData(card, updateData);
-            });
-        } else {
-            utils.updateCardData(card, updateData);
-        }
-
-        bootstrap.Modal.getInstance(document.getElementById('editTourGuideModal')).hide();
-        elements.editForm.reset();
-    },
-
-    delete: () => {
-        if (tourGuideToDelete) {
-            tourGuideToDelete.remove();
-            tourGuideToDelete = null;
-            elements.deleteModal.hide();
-        }
-    }
-};
-
-// Event Listeners
-document.getElementById('saveTourGuide').addEventListener('click', handlers.create);
-document.getElementById('updateTourGuide').addEventListener('click', handlers.update);
-document.querySelector('#deleteproject .btn-danger').addEventListener('click', handlers.delete);
-
-elements.container.addEventListener('click', e => {
-    const editBtn = e.target.closest('.edit-guide');
-    const deleteBtn = e.target.closest('.delete-guide');
-
-    if (editBtn) {
-        handlers.edit(editBtn.dataset.id, utils.getCard(editBtn.dataset.id));
-    } else if (deleteBtn) {
-        tourGuideToDelete = utils.getCard(deleteBtn.dataset.id);
-        elements.deleteModal.show();
-    }
-});
+    });
 });
 </script>
 </x-admin.layout>

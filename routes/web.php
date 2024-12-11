@@ -88,6 +88,18 @@ Route::prefix('admin')->group(function () {
     Route::post('/destinations', [DestinationController::class, 'addDestination'])->name('destinations.add');
     Route::put('/destinations/{destination}', [DestinationController::class, 'updateDestination'])->name('destinations.update');
     Route::delete('/destinations/{destination}', [DestinationController::class, 'deleteDestination'])->name('destinations.delete');
+
+    Route::get('/hero', function () {
+        return view('components.admin.section.landingpage.hero');
+    })->name('admin.hero');
+
+    Route::get('/about', function () {
+        return view('components.admin.section.landingpage.about-us');
+    })->name('admin.about-us');
+
+    Route::get('/faq', function () {
+        return view('components.admin.section.landingpage.faq');
+    })->name('admin.faq');
 });
 
 // Rute untuk Logout
