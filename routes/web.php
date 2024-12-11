@@ -80,6 +80,18 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/tour-guides', [ViewMenuAdminController::class, 'showTourGuide'])->name('admin.tour-guides');
     Route::post('/tour-guides', [TourGuideController::class, 'store']);
     Route::post('/tour-guides/update', [TourGuideController::class, 'update'])->name('tour-guides.update');
+
+    Route::get('/hero', function () {
+        return view('components.admin.section.landingpage.hero');
+    })->name('admin.hero');
+
+    Route::get('/about', function () {
+        return view('components.admin.section.landingpage.about-us');
+    })->name('admin.about-us');
+
+    Route::get('/faq', function () {
+        return view('components.admin.section.landingpage.faq');
+    })->name('admin.faq');
 });
 
 // Rute untuk Logout

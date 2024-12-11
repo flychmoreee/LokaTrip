@@ -102,7 +102,7 @@
                                         <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editfaq">
                                             <i class="icofont-edit text-success"></i>
                                         </button>
-                                        <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#deleteproject">
+                                        <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#deletefaq">
                                             <i class="icofont-ui-delete text-danger"></i>
                                         </button>
                                     </td>
@@ -115,7 +115,7 @@
                                         <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editfaq">
                                             <i class="icofont-edit text-success"></i>
                                         </button>
-                                        <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#deleteproject">
+                                        <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#deletefaq">
                                             <i class="icofont-ui-delete text-danger"></i>
                                         </button>
                                     </td>
@@ -129,81 +129,74 @@
     </div>
 </div>
 
-<!-- Modal Tambah FAQ -->
-<div class="modal fade" id="addfaq" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title fw-bold">Tambah FAQ</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label class="form-label">Pertanyaan</label>
-                        <input type="text" class="form-control" name="question">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Jawaban</label>
-                        <textarea class="form-control" name="answer" rows="4"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Simpan</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+<!-- Create FAQ Modal -->
+<x-admin.modal 
+    id="addfaq"
+    title="Tambah FAQ"
+    :fields="[
+        [
+            'type' => 'text',
+            'name' => 'question',
+            'label' => 'Pertanyaan',
+            'placeholder' => 'Masukkan pertanyaan...',
+            'required' => true
+        ],
+        [
+            'type' => 'textarea',
+            'name' => 'answer',
+            'label' => 'Jawaban',
+            'placeholder' => 'Masukkan jawaban...',
+            'required' => true
+        ]
+    ]"
+/>
 
-<!-- Modal Edit FAQ -->
-<div class="modal fade" id="editfaq" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title fw-bold">Edit FAQ</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label class="form-label">Pertanyaan</label>
-                        <input type="text" class="form-control" name="edit_question" value="Apa itu FAQ?">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Jawaban</label>
-                        <textarea class="form-control" name="edit_answer" rows="4">FAQ adalah Frequently Asked Questions atau Pertanyaan yang Sering Diajukan</textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+<!-- Edit FAQ Modal -->
+<x-admin.modal 
+    id="editfaq"
+    title="Edit FAQ"
+    method="PUT"
+    :fields="[
+        [
+            'type' => 'hidden',
+            'name' => 'id',
+            'value' => ''
+        ],
+        [
+            'type' => 'text',
+            'name' => 'question',
+            'label' => 'Pertanyaan',
+            'value' => '',
+            'required' => true
+        ],
+        [
+            'type' => 'textarea',
+            'name' => 'answer',
+            'label' => 'Jawaban',
+            'value' => '',
+            'required' => true
+        ]
+    ]"
+    submitText="Update"
+/>
 
-<!-- Modal Delete FAQ -->
-<div class="modal fade" id="deleteproject" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title fw-bold" id="deleteprojectLabel">Delete item Permanently?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body justify-content-center flex-column d-flex">
-                <i class="icofont-ui-delete text-danger display-2 text-center mt-2"></i>
-                <p class="mt-4 fs-5 text-center">You can only delete this item Permanently</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger color-fff">Delete</button>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- Delete FAQ Modal -->
+<x-admin.modal 
+    id="deletefaq"
+    title="Hapus FAQ"
+    size="modal-md"
+    :isDelete="true"
+    :bodyText="'Apakah Anda yakin ingin menghapus item ini?'"
+/>
+
+<!-- Delete Modal -->
+<x-admin.modal 
+    id="deleteproject"
+    title="Delete item Permanently?"
+    size="modal-md"
+    :isDelete="true"
+    :bodyText="'You can only delete this item Permanently'"
+/>
 
 <!-- Script DataTable -->
 <script>

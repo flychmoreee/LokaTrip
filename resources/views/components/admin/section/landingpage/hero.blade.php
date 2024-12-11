@@ -69,53 +69,44 @@
         <div class="row align-items-center">
             <div class="border-0 mb-4">
                 <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-                    <h3 class="fw-bold mb-0">Daftar FAQ</h3>
+                    <h3 class="fw-bold mb-0">Hero Section</h3>
                     <div class="col-auto d-flex w-sm-100">
-                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addfaq">
-                            <i class="icofont-plus-circle me-2 fs-6"></i>Tambah FAQ
+                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addhero">
+                            <i class="icofont-plus-circle me-2 fs-6"></i>Tambah Hero
                         </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Tabel FAQ -->
+        <!-- Tabel Hero -->
         <div class="row clearfix g-3">
             <div class="col-sm-12">
                 <div class="card mb-3">
                     <div class="card-body">
-                        <table id="faqTable" class="table table-hover align-middle mb-0">
+                        <table id="heroTable" class="table table-hover align-middle mb-0">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Pertanyaan</th>
-                                    <th>Jawaban</th>
+                                    <th>Nama</th>
+                                    <th>Deskripsi</th>
+                                    <th>Hero Image</th>
+                                    <th>Card Title</th>
+                                    <th>Card Image</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Apa itu FAQ?</td>
-                                    <td>FAQ adalah Frequently Asked Questions atau Pertanyaan yang Sering Diajukan</td>
+                                    <td>Contoh Nama 1</td>
+                                    <td>Deskripsi singkat 1</td>
+                                    <td><img src="{{ asset('/assets/img/danau.jpg') }}" width="100"></td>
+                                    <td>Card Title 1</td>
+                                    <td><img src="{{ asset('/assets/img/danau.jpg') }}" width="100"></td>
                                     <td>
-                                        <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editfaq">
+                                        <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#edithero">
                                             <i class="icofont-edit text-success"></i>
                                         </button>
-                                        <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#deleteproject">
-                                            <i class="icofont-ui-delete text-danger"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Bagaimana cara menambah FAQ?</td>
-                                    <td>Klik tombol Tambah FAQ di pojok kanan atas</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editfaq">
-                                            <i class="icofont-edit text-success"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#deleteproject">
+                                        <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#deletehero">
                                             <i class="icofont-ui-delete text-danger"></i>
                                         </button>
                                     </td>
@@ -129,86 +120,97 @@
     </div>
 </div>
 
-<!-- Modal Tambah FAQ -->
-<div class="modal fade" id="addfaq" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title fw-bold">Tambah FAQ</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label class="form-label">Pertanyaan</label>
-                        <input type="text" class="form-control" name="question">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Jawaban</label>
-                        <textarea class="form-control" name="answer" rows="4"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Simpan</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+<!-- Create Hero Modal -->
+<x-admin.modal 
+    id="addhero"
+    title="Tambah Hero"
+    :fields="[
+        [
+            'type' => 'file',
+            'name' => 'background_image',
+            'label' => 'Background Image',
+            'required' => true
+        ],
+        [
+            'type' => 'text',
+            'name' => 'title',
+            'label' => 'Judul',
+            'placeholder' => 'Masukkan judul hero...',
+            'required' => true
+        ],
+        [
+            'type' => 'textarea',
+            'name' => 'description',
+            'label' => 'Deskripsi',
+            'placeholder' => 'Masukkan deskripsi hero...',
+            'required' => true
+        ],
+        [
+            'type' => 'text',
+            'name' => 'button_text',
+            'label' => 'Teks Button',
+            'placeholder' => 'Contoh: Learn More',
+            'required' => true
+        ]
+    ]"
+/>
 
-<!-- Modal Edit FAQ -->
-<div class="modal fade" id="editfaq" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title fw-bold">Edit FAQ</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label class="form-label">Pertanyaan</label>
-                        <input type="text" class="form-control" name="edit_question" value="Apa itu FAQ?">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Jawaban</label>
-                        <textarea class="form-control" name="edit_answer" rows="4">FAQ adalah Frequently Asked Questions atau Pertanyaan yang Sering Diajukan</textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+<!-- Edit Hero Modal -->
+<x-admin.modal 
+    id="edithero"
+    title="Edit Hero"
+    method="PUT"
+    :fields="[
+        [
+            'type' => 'hidden',
+            'name' => 'id',
+            'value' => ''
+        ],
+        [
+            'type' => 'file',
+            'name' => 'background_image',
+            'label' => 'Background Image',
+            'help' => 'Biarkan kosong jika tidak ingin mengubah gambar',
+            'preview' => asset('/path/to/current/image.jpg')
+        ],
+        [
+            'type' => 'text',
+            'name' => 'title',
+            'label' => 'Judul',
+            'value' => '',
+            'required' => true
+        ],
+        [
+            'type' => 'textarea',
+            'name' => 'description',
+            'label' => 'Deskripsi',
+            'value' => '',
+            'required' => true
+        ],
+        [
+            'type' => 'text',
+            'name' => 'button_text',
+            'label' => 'Teks Button',
+            'value' => '',
+            'required' => true
+        ]
+    ]"
+    submitText="Update"
+/>
 
-<!-- Modal Delete FAQ -->
-<div class="modal fade" id="deleteproject" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title fw-bold" id="deleteprojectLabel">Delete item Permanently?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body justify-content-center flex-column d-flex">
-                <i class="icofont-ui-delete text-danger display-2 text-center mt-2"></i>
-                <p class="mt-4 fs-5 text-center">You can only delete this item Permanently</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger color-fff">Delete</button>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- Delete Hero Modal -->
+<x-admin.modal 
+    id="deletehero"
+    title="Hapus Hero"
+    size="modal-md"
+    :isDelete="true"
+    :bodyText="'Apakah Anda yakin ingin menghapus item ini?'"
+/>
 
 <!-- Script DataTable -->
 <script>
     $(document).ready(function() {
-        $('#faqTable').DataTable({
+        $('#heroTable').DataTable({
             responsive: true,
             columnDefs: [
                 { targets: [-1], orderable: false }

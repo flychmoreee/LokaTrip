@@ -123,28 +123,11 @@
                                     <div class="new-arrival-content position-relative">
 
                                         <!-- Love Icon -->
-                                        <div class="wishlist-icon position-absolute top-0 end-0">
-                                            <span class="love-btn">
-                                                <i class="fa-regular fa-heart fs-4"></i>
-                                            </span>
-                                        </div>
 
 
                                         <h4><a href="{{ route('user.detail-product') }}">Jawa Timur Park 1</a></h4>
                                         <p>Lokasi: <span class="item">Batu, Jawa Timur</span></p>
                                         <div class="comment-review star-rating">
-                                            <ul>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star-half-empty"></i></li>
-                                                <li><i class="fa fa-star-half-empty"></i></li>
-                                            </ul>
-                                            <span class="review-text">(34 reviews) / </span><a class="product-review"
-                                                href="" data-bs-toggle="modal"
-                                                data-bs-target="#reviewModal">Write a review?</a>
                                             <p class="price">Rp 48.000</p>
                                         </div>
                                         <p class="text-content">Jawa Timur Park 1 adalah taman hiburan keluarga yang
@@ -173,27 +156,10 @@
                                     <div class="new-arrival-content position-relative">
 
                                         <!-- Love Icon -->
-                                        <div class="wishlist-icon position-absolute top-0 end-0">
-                                            <span class="love-btn">
-                                                <i class="fa-regular fa-heart fs-4"></i>
-                                            </span>
-                                        </div>
 
                                         <h4><a href="{{ route('user.detail-product') }}">Jawa Timur Park 2</a></h4>
                                         <p>Lokasi: <span class="item">Batu, Jawa Timur</span></p>
                                         <div class="comment-review star-rating">
-                                            <ul>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star-half-empty"></i></li>
-                                                <li><i class="fa fa-star-half-empty"></i></li>
-                                            </ul>
-                                            <span class="review-text">(34 reviews) / </span><a class="product-review"
-                                                href="" data-bs-toggle="modal"
-                                                data-bs-target="#reviewModal">Write a review?</a>
                                             <p class="price">Rp 48.000</p>
                                         </div>
                                         <p class="text-content">Jawa Timur Park 1 adalah taman hiburan keluarga yang
@@ -223,27 +189,10 @@
                                     <div class="new-arrival-content position-relative">
 
                                         <!-- Love Icon -->
-                                        <div class="wishlist-icon position-absolute top-0 end-0">
-                                            <span class="love-btn">
-                                                <i class="fa-regular fa-heart fs-4"></i>
-                                            </span>
-                                        </div>
 
                                         <h4><a href="ecom-product-detail.html">Jawa Timur Park 3</a></h4>
                                         <p>Lokasi: <span class="item">Batu, Jawa Timur</span></p>
                                         <div class="comment-review star-rating">
-                                            <ul>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star-half-empty"></i></li>
-                                                <li><i class="fa fa-star-half-empty"></i></li>
-                                            </ul>
-                                            <span class="review-text">(34 reviews) / </span><a class="product-review"
-                                                href="" data-bs-toggle="modal"
-                                                data-bs-target="#reviewModal">Write a review?</a>
                                             <p class="price">Rp 48.000</p>
                                         </div>
                                         <p class="text-content">Jawa Timur Park 1 adalah taman hiburan keluarga yang
@@ -272,27 +221,10 @@
                                     <div class="new-arrival-content position-relative">
 
                                         <!-- Love Icon -->
-                                        <div class="wishlist-icon position-absolute top-0 end-0">
-                                            <span class="love-btn">
-                                                <i class="fa-regular fa-heart fs-4"></i>
-                                            </span>
-                                        </div>
 
                                         <h4><a href="ecom-product-detail.html">Jawa Timur Park 4</a></h4>
                                         <p>Lokasi: <span class="item">Batu, Jawa Timur</span></p>
                                         <div class="comment-review star-rating">
-                                            <ul>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star-half-empty"></i></li>
-                                                <li><i class="fa fa-star-half-empty"></i></li>
-                                            </ul>
-                                            <span class="review-text">(34 reviews) / </span><a class="product-review"
-                                                href="" data-bs-toggle="modal"
-                                                data-bs-target="#reviewModal">Write a review?</a>
                                             <p class="price">Rp 48.000</p>
                                         </div>
                                         <p class="text-content">Jawa Timur Park 1 adalah taman hiburan keluarga yang
@@ -321,27 +253,10 @@
                                     <div class="new-arrival-content position-relative">
 
                                         <!-- Love Icon -->
-                                        <div class="wishlist-icon position-absolute top-0 end-0">
-                                            <span class="love-btn">
-                                                <i class="fa-regular fa-heart fs-4"></i>
-                                            </span>
-                                        </div>
 
                                         <h4><a href="ecom-product-detail.html">Jawa Timur Park 5</a></h4>
                                         <p>Lokasi: <span class="item">Batu, Jawa Timur</span></p>
                                         <div class="comment-review star-rating">
-                                            <ul>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star-half-empty"></i></li>
-                                                <li><i class="fa fa-star-half-empty"></i></li>
-                                            </ul>
-                                            <span class="review-text">(34 reviews) / </span><a class="product-review"
-                                                href="" data-bs-toggle="modal"
-                                                data-bs-target="#reviewModal">Write a review?</a>
                                             <p class="price">Rp 48.000</p>
                                         </div>
                                         <p class="text-content">Jawa Timur Park 1 adalah taman hiburan keluarga yang
@@ -370,27 +285,10 @@
                                     <div class="new-arrival-content position-relative">
 
                                         <!-- Love Icon -->
-                                        <div class="wishlist-icon position-absolute top-0 end-0">
-                                            <span class="love-btn">
-                                                <i class="fa-regular fa-heart fs-4"></i>
-                                            </span>
-                                        </div>
 
                                         <h4><a href="ecom-product-detail.html">Jawa Timur Park 6</a></h4>
                                         <p>Lokasi: <span class="item">Batu, Jawa Timur</span></p>
                                         <div class="comment-review star-rating">
-                                            <ul>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star-half-empty"></i></li>
-                                                <li><i class="fa fa-star-half-empty"></i></li>
-                                            </ul>
-                                            <span class="review-text">(34 reviews) / </span><a class="product-review"
-                                                href="" data-bs-toggle="modal"
-                                                data-bs-target="#reviewModal">Write a review?</a>
                                             <p class="price">Rp 48.000</p>
                                         </div>
                                         <p class="text-content">Jawa Timur Park 1 adalah taman hiburan keluarga yang

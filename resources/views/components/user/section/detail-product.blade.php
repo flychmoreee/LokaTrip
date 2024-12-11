@@ -88,15 +88,6 @@
                                                     hiburan keluarga yang menawarkan berbagai wahana seru, area edukasi,
                                                     dan pertunjukan menarik. Cocok untuk liburan bersama keluarga dan
                                                     anak-anak.</span></p>
-                                            <div class="d-flex align-items-end flex-wrap mt-4">
-                                                <!--Quanatity End-->
-                                                <div class="shopping-cart mb-2 me-3">
-                                                    <button class="btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#ticketModal">
-                                                        <i class="fas fa-ticket-alt me-2"></i>Beli Tiket
-                                                    </button>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

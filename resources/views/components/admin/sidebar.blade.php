@@ -14,13 +14,20 @@
             <!-- Menu: main ul -->
             <ul class="menu-list flex-grow-1 mt-3">
                 <li class="collapsed">
-                    <a class="m-link" data-bs-toggle="collapse" data-bs-target="#menu-Componentsone" href="#"><i
-                            class="icofont-home fs-5"></i> <span>Landing Page</span> <span class="arrow icofont-dotted-down ms-auto text-end fs-5"></span></a>
+                    <a class="m-link {{ request()->routeIs('admin.hero') || request()->routeIs('admin.about-us') || request()->routeIs('admin.faq') ? 'active' : '' }}" 
+                       data-bs-toggle="collapse" 
+                       data-bs-target="#menu-Componentsone" 
+                       href="#">
+                        <i class="icofont-home fs-5"></i> 
+                        <span>Landing Page</span> 
+                        <span class="arrow icofont-dotted-down ms-auto text-end fs-5"></span>
+                    </a>
                     <!-- Menu: Sub menu ul -->
-                    <ul class="sub-menu collapse" id="menu-Componentsone">
-                        <li><a class="ms-link" href="{{ route('admin.hero') }}"><span>Hero</span></a></li>
-                        <li><a class="ms-link" href="{{ route('admin.about-us') }}"><span>About Us</span></a></li>
-                        <li><a class="ms-link" href="{{ route('admin.faq') }}"><span>FAQ</span></a></li>
+                    <ul class="sub-menu collapse {{ request()->routeIs('admin.hero') || request()->routeIs('admin.about-us') || request()->routeIs('admin.faq') ? 'show' : '' }}" 
+                        id="menu-Componentsone">
+                        <li><a class="ms-link {{ request()->routeIs('admin.hero') ? 'active' : '' }}" href="{{ route('admin.hero') }}"><span>Hero</span></a></li>
+                        <li><a class="ms-link {{ request()->routeIs('admin.about-us') ? 'active' : '' }}" href="{{ route('admin.about-us') }}"><span>About Us</span></a></li>
+                        <li><a class="ms-link {{ request()->routeIs('admin.faq') ? 'active' : '' }}" href="{{ route('admin.faq') }}"><span>FAQ</span></a></li>
                     </ul>
                 </li>
                 <li class="collapsed">

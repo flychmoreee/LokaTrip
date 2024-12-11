@@ -40,30 +40,6 @@
                     <span class="nav-text">Rencana Perjalanan</span>
                 </a>
             </li>
-
-            <!-- History Transaction -->
-            <li class="{{ request()->is('user') ? 'active' : '' }}">
-                <a href="{{ url('/user/my-ticket') }}">
-                    <i class="fa-solid fa-ticket"></i>
-                    <span class="nav-text">Tiket Saya</span>
-                </a>
-            </li>
-
-            <!-- Wishlist -->
-            <li class="{{ request()->is('user') ? 'active' : '' }}">
-                <a href="{{ url('/user/wishlist') }}">
-                    <i class="fa-regular fa-heart"></i>
-                    <span class="nav-text">Wishlist</span>
-                </a>
-            </li>
-
-            <!-- Wishlist -->
-            <li class="{{ request()->is('user') ? 'active' : '' }}">
-                <a href="{{ url('/user/history-transaction') }}">
-                    <i class="fa-solid fa-money-bill"></i>
-                    <span class="nav-text">History Pembayaran</span>
-                </a>
-            </li>
         </ul>
     </div>
 </div>
