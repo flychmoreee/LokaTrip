@@ -73,7 +73,7 @@
                                 </div>
                             </div>
                             <!-- Rekomendasi Pariwisata Card -->
-                            <div class="col-xl-6 col-sm-6">
+                            {{-- <div class="col-xl-6 col-sm-6">
                                 <div class="card feature-card d-flex flex-column align-items-center text-center">
                                     <!-- Icon -->
                                     <div class="icon mb-3 mt-2">
@@ -87,7 +87,7 @@
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

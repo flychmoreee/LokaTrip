@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class GoogleController extends Controller
 {
@@ -16,7 +17,7 @@ class GoogleController extends Controller
         return Socialite::driver('google')->redirect();
     }
 
-    public function handleGoogleCallback()
+    public function handleGoogleCallback(Request $request)
     {
         $googleUser = Socialite::driver('google')->user();
 
@@ -30,11 +31,14 @@ class GoogleController extends Controller
             ]
         );
 
+
         Auth::login($user);
+        Log::info('User after updateOrCreate:', $user->toArray());
+
         $user->setRememberToken(Str::random(60));
         $user->save();
 
-        return redirect('user/dashboard');
+        return redirect()->route('user.dashboard');
     }
 
     public function logout(Request $request)

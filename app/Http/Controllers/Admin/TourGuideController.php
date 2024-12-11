@@ -4,111 +4,50 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\TourGuide;
-use Illuminate\Support\Facades\Storage;
+use App\Models\TourGuides;
 
 class TourGuideController extends Controller
 {
-    public function addTourGuide(Request $request)
+    public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'age' => 'required|integer',
-            'email' => 'required|email|unique:tour_guides,email',
-            'phone' => 'required|string',
-            'address' => 'required|string',
-            'gender' => 'required|string',
-            'language' => 'required|string',
-            'location' => 'required|string',
-            'image_profile' => 'required|image',
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',
+            'whatsapp' => 'required|string|max:15',
+            'instagram' => 'required|string|max:255',
+            'foto' => 'nullable|image|max:10048'
         ]);
 
-        $name = $request->name;
-
-        $imagePath = $request->file('image_profile')->store("tour-guide/$name");
-
-        $location = $request->location;
-        $message = "Halo saya tertarik dengan wisata yang ada di $location";
-
-        TourGuide::create([
-            'name' => $request->name,
-            'age' => $request->age,
-            'email' => $request->email,
-            'phone' => $this->convertPhoneToWaLink($request->phone, $message),
-            'address' => $request->address,
-            'gender' => $request->gender,
-            'language' => $request->language,
-            'location' => $location,
-            'image_profile' => $imagePath,
-        ]);
-
-        return redirect()->route('tour-guides.index')->with('success', 'Tour guide created successfully.');
-    }
-
-
-    public function updateTourGuide(Request $request, TourGuide $tourGuide)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'age' => 'required|integer',
-            'email' => 'required|email|unique:tour_guides,email,' . $tourGuide->id,
-            'phone' => 'required|string',
-            'address' => 'required|string',
-            'gender' => 'required|string',
-            'language' => 'required|string',
-            'location' => 'required|string',
-            'image_profile' => 'image',
-        ]);
-
-        $name = $request->name;
-
-        if ($request->hasFile('image_profile')) {
-            Storage::delete($tourGuide->image_profile);
-            $imagePath = $request->file('image_profile')->store("tour-guide/$name");
-            $tourGuide->image_profile = $imagePath;
+        if ($request->hasFile('foto')) {
+            $validated['foto'] = $request->file('foto')->store('tour-guides', 'public');
         }
 
-        $location = $request->location;
-        $message = "Halo saya tertarik dengan wisata yang ada di $location";
+        TourGuides::create($validated);
 
-        $tourGuide->update([
-            'name' => $request->name,
-            'age' => $request->age,
-            'email' => $request->email,
-            'phone' => $this->convertPhoneToWaLink($request->phone, $message),
-            'address' => $request->address,
-            'gender' => $request->gender,
-            'language' => $request->language,
-            'location' => $request->location,
+        return response()->json(['message' => 'Tour guide created successfully'], 201);
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'editId' => 'required|exists:tour_guides,id',
+            'editNama' => 'required|string|max:255',
+            'editWhatsapp' => 'required|string|max:15',
+            'editInstagram' => 'required|string|max:255',
+            'editFoto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10048',
         ]);
 
-        return redirect()->route('tour-guides.index')->with('success', 'Tour guide updated successfully.');
-    }
+        $tourGuide = TourGuides::find($request->editId);
+        $tourGuide->nama = $request->editNama;
+        $tourGuide->whatsapp = $request->editWhatsapp;
+        $tourGuide->instagram = $request->editInstagram;
 
-    public function deleteTourGuide(TourGuide $tourGuide)
-    {
-        Storage::delete($tourGuide->image_profile);
-
-        $name = $tourGuide->name;
-        Storage::deleteDirectory("tour-guide/$name");
-
-        $tourGuide->delete();
-
-        return redirect()->route('tour-guides.index')->with('success', 'Tour guide deleted successfully.');
-    }
-
-    private function convertPhoneToWaLink($phone, $message = '')
-    {
-        $phone = preg_replace('/\D/', '', $phone);
-
-        if (substr($phone, 0, 1) === '0') {
-            $phone = '62' . substr($phone, 1);
+        if ($request->hasFile('editFoto')) {
+            $path = $request->file('editFoto')->store('tour-guides', 'public');
+            $tourGuide->foto = $path;
         }
 
-        $encodedMessage = urlencode($message);
+        $tourGuide->save();
 
-        return $message
-            ? "https://wa.me/$phone?text=$encodedMessage"
-            : "https://wa.me/$phone";
+        return response()->json(['message' => 'Tour guide updated successfully']);
     }
 }

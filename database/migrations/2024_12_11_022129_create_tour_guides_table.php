@@ -11,17 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tour_guides', function (Blueprint $table) {
+        Schema::create('tour_guide', function (Blueprint $table) {
             $table->id();
-            $table->string('image_profile');
-            $table->string('name');
-            $table->integer('age');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('address');
-            $table->enum('gender', ['male', 'female']);
-            $table->string('language');
-            $table->string('location');
+            $table->string('nama');
+            $table->string('whatsapp');
+            $table->string('instagram');
+            $table->string('foto');
             $table->timestamps();
         });
     }

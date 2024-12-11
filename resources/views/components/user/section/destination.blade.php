@@ -16,21 +16,23 @@
                                             <span class="m-0 mb-3">Masukkan lokasi yang ingin di tuju dan kategori range
                                                 budget untuk
                                                 mendapatkan destinasi yang sesuai.</span>
-                                            <form>
+                                            <form method="POST" action="{{ route('budget.recommendation') }}">
+                                                @csrf
                                                 <div class="mb-3">
                                                     <label for="location" class="form-label">Lokasi</label>
                                                     <input type="text" class="form-control" id="location"
-                                                        placeholder="Surabaya">
+                                                        name="location" placeholder="Surabaya">
                                                 </div>
 
                                                 <div class="mb-3">
                                                     <label for="budget" class="form-label">Budget Anda</label>
-                                                    <input type="text" class="form-control" id="budget"
+                                                    <input type="text" class="form-control" id="budget_display"
                                                         placeholder="Rp 50.000">
+                                                    <input type="hidden" id="budget" name="budget">
                                                 </div>
 
                                                 <div class="text-center">
-                                                    <button type="button"
+                                                    <button type="submit"
                                                         class="btn btn-primary btn-block">Generate</button>
                                                 </div>
                                             </form>
@@ -46,17 +48,38 @@
                         <div class="card">
                             <div class="card-body hasil-generate" style="max-height: 400px; overflow-y: auto;">
                                 <h4>Hasil Generate</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vehicula est id eros
-                                    facilisis, ut auctor justo gravida. Maecenas nec libero vel mauris feugiat
-                                    tincidunt. Aenean a risus non magna viverra suscipit id at neque. Quisque sit amet
-                                    erat et neque dapibus vehicula. Vestibulum vitae tincidunt nisi. Cras sit amet
-                                    tincidunt ex, et pharetra risus. Fusce sed risus eu nisl scelerisque tempus. Sed
-                                    tincidunt accumsan neque. Aenean nec dictum eros.</p>
-                                <p>Integer vulputate purus ut eros congue, quis rutrum metus auctor. Ut ac tortor
-                                    suscipit, gravida felis in, volutpat mauris. Suspendisse et ex id urna vulputate
-                                    interdum at id lorem. Vivamus nec est vehicula, interdum urna sed, mollis risus.
-                                    Proin quis congue lectus, sed tincidunt justo. Cras fringilla dictum augue, nec
-                                    rutrum justo fermentum a. Proin vel tortor augue.</p>
+                                @if (isset($latestResult))
+                                    <div>
+                                        <?php
+                                        // Ambil teks dari database
+                                        $text = $latestResult->prompt;
+                                        
+                                        // Pisahkan teks berdasarkan bagian
+                                        $sections = preg_split('/\*\*(.*?)\*\*/', $text, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+                                        
+                                        // Tampilkan setiap bagian
+                                        foreach ($sections as $index => $section) {
+                                            if ($index % 2 == 0) {
+                                                // Ini adalah konten
+                                                echo '<ul>';
+                                                $items = explode('*', $section);
+                                                foreach ($items as $item) {
+                                                    $item = trim($item);
+                                                    if (!empty($item)) {
+                                                        echo '<li>' . $item . '</li>';
+                                                    }
+                                                }
+                                                echo '</ul>';
+                                            } else {
+                                                // Ini adalah judul
+                                                echo '<strong>' . trim($section) . '</strong>';
+                                            }
+                                        }
+                                        ?>
+                                    </div>
+                                @else
+                                    <p>Belum ada hasil generate terbaru.</p>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -461,6 +484,19 @@
 
             });
         }
+    </script>
+
+    <script>
+        document.getElementById('budget_display').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/[^0-9]/g, ''); // Hanya angka
+            document.getElementById('budget').value = value; // Set nilai asli ke input hidden
+
+            // Format tampilan dengan Rp dan titik
+            e.target.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            if (e.target.value) {
+                e.target.value = 'Rp ' + e.target.value;
+            }
+        });
     </script>
 
     <style>
