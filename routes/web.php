@@ -30,7 +30,7 @@ use App\Http\Controllers\LandingPage\AboutUsController;
 use App\Http\Controllers\LandingPage\FaqController;
 
 // ... existing code ...
-Route::get('/', [LandingPageViewController::class, 'showHero']);
+Route::get('/', [LandingPageViewController::class, 'showHero'])->name('landing-page');
 // ... existing code ...
 
 // Rute untuk login

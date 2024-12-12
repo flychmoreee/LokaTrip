@@ -14,31 +14,37 @@ class GoogleController extends Controller
 {
     public function redirectToGoogle()
     {
+        session()->forget('state');
         return Socialite::driver('google')->redirect();
     }
 
     public function handleGoogleCallback(Request $request)
     {
-        $googleUser = Socialite::driver('google')->user();
+        try {
+            $googleUser = Socialite::driver('google')->user();
 
-        $user = User::updateOrCreate(
-            ['email' => $googleUser->getEmail()],
-            [
-                'name' => $googleUser->getName(),
-                'google_id' => $googleUser->getId(),
-                'profile_picture' => $googleUser->getAvatar(),
-                'role_id' => 2,
-            ]
-        );
+            $user = User::updateOrCreate(
+                ['email' => $googleUser->getEmail()],
+                [
+                    'name' => $googleUser->getName(),
+                    'google_id' => $googleUser->getId(),
+                    'profile_picture' => $googleUser->getAvatar(),
+                    'role_id' => 2,
+                ]
+            );
 
+            Auth::login($user);
+            Log::info('User after updateOrCreate:', $user->toArray());
 
-        Auth::login($user);
-        Log::info('User after updateOrCreate:', $user->toArray());
+            $user->setRememberToken(Str::random(60));
+            $user->save();
 
-        $user->setRememberToken(Str::random(60));
-        $user->save();
-
-        return redirect()->route('user.dashboard');
+            return redirect()->route('user.dashboard');
+        } catch (\Exception $e) {
+            Log::error('Google login error: ' . $e->getMessage());
+            return redirect()->route('landing-page')
+                ->with('error', 'Terjadi kesalahan saat login dengan Google. Silakan coba lagi.');
+        }
     }
 
     public function logout(Request $request)
