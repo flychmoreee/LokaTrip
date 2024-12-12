@@ -26,14 +26,10 @@
                       </ul>
                   </div>
                   <div>
-                      <h3 class="footer__title">Company</h3>
+                      <h3 class="footer__title">Samisu</h3>
                       <ul class="footer__links">
                           <li>
                               <a href="#FAQ" class="footer__link">FAQ</a>
-                          </li>
-
-                          <li>
-                              <a href="#testimonial" class="footer__link">Testimonial</a>
                           </li>
                       </ul>
                   </div>
@@ -41,10 +37,10 @@
                       <h3 class="footer__title">Contact</h3>
                       <ul class="footer__links">
                           <li>
-                              <a href="" class="footer__link">example@gmail.com</a>
+                              <a href="" class="footer__link">mrasyazildan@gmail.com</a>
                           </li>
                           <li>
-                              <a href="" class="footer__link">08123456789</a>
+                              <a href="" class="footer__link">0895421845451</a>
                           </li>
                       </ul>
                   </div>

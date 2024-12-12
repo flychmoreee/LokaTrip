@@ -14,13 +14,16 @@ return new class extends Migration
         Schema::create('destinations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->decimal('price', 10, 2);
             $table->text('description');
-            $table->json('gallery');
-            $table->float('rating')->nullable();
-            $table->integer('review')->nullable();
+            $table->string('gallery');
             $table->string('location');
-            $table->string('thumbnail');
+            $table->text('google_maps');
             $table->string('category');
+            $table->time('open');
+            $table->time('close');
+            $table->string('facilities');
+
             $table->timestamps();
         });
     }

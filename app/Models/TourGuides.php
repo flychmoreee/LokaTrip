@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class TourGuides extends Model
 {
     protected $table = 'tour_guide';
-    protected $fillable = ['nama', 'whatsapp', 'instagram', 'foto'];
+    protected $fillable = ['name', 'phone', 'instagram', 'image_profile'];
 }

@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\TourGuides;
+use App\Models\Destinations;
 
 class ViewMenuAdminController extends Controller
 {
     public function showDestination()
     {
-        return view('components.admin.section.destination');
+        $destinations = Destinations::all();
+        return view('components.admin.section.destination', compact('destinations'));
     }
 
     public function showTourGuide()

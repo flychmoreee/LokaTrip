@@ -11,21 +11,16 @@ class AboutUsController extends Controller
 {
     public function index()
     {
-        $about = AboutUs::first(); // Ambil data About Us pertama
-        return view('about.index', compact('about'));
+        $about = AboutUs::all(); // Ambil data About Us pertama
+        return view('components.admin.section.landingpage.about-us', compact('about'));
     }
 
-    public function create()
-    {
-        return view('about.create');
-    }
-
-    public function store(Request $request)
+    public function addAboutUs(Request $request)
     {
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'image_url' => 'required|image|mimes:jpg,jpeg,png',
+            'image_url' => 'required|image|mimes:jpg,jpeg,png|max:5048',
         ]);
 
         $imagePath = $request->file('image_url')->store('about_images', 'public');
@@ -36,20 +31,20 @@ class AboutUsController extends Controller
             'image_url' => $imagePath,
         ]);
 
-        return redirect()->route('about.index');
+        return redirect()->route('admin.about-us');
     }
 
     public function edit(AboutUs $aboutUs)
     {
-        return view('about.edit', compact('aboutUs'));
+        return view('components.admin.section.landingpage.about-us', compact('aboutUs'));
     }
 
-    public function update(Request $request, AboutUs $aboutUs)
+    public function updateAboutUs(Request $request, AboutUs $aboutUs)
     {
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'image_url' => 'nullable|image|mimes:jpg,jpeg,png',
+            'image_url' => 'nullable|image|mimes:jpg,jpeg,png|max:5048',
         ]);
 
         $aboutUs->title = $request->title;
@@ -65,16 +60,16 @@ class AboutUsController extends Controller
 
         $aboutUs->save();
 
-        return redirect()->route('about.index');
+        return redirect()->route('admin.about-us');
     }
 
-    public function destroy(AboutUs $aboutUs)
+    public function deleteAboutUs(AboutUs $aboutUs)
     {
         if ($aboutUs->image_url) {
             Storage::disk('public')->delete($aboutUs->image_url);
         }
 
         $aboutUs->delete();
-        return redirect()->route('about.index');
+        return redirect()->route('admin.about-us');
     }
 }

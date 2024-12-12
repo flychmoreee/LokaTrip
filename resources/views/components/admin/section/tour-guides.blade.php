@@ -12,27 +12,28 @@
                     </button>
                     <!-- header rightbar icon -->
                     <div class="h-right d-flex align-items-center mr-5 mr-lg-0 order-1">
-                        <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
+                        <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center     zindex-popover">
                             <div class="u-info me-2">
-                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">Dylan
-                                        Hunter</span></p>
+                                <p class="mb-0 text-end line-height-sm "><span
+                                        class="font-weight-bold">{{ Auth::user()->name }}</span></p>
                                 <small>Admin Profile</small>
                             </div>
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button"
                                 data-bs-toggle="dropdown" data-bs-display="static">
-                                <img class="avatar lg rounded-circle img-thumbnail" src="assets/images/profile_av.png"
-                                    alt="profile">
+                                <img class="avatar lg rounded-circle img-thumbnail"
+                                    src="{{ asset('/storage/' . Auth::user()->image_url) }}" alt="profile">
                             </a>
                             <div
                                 class="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0">
                                 <div class="card border-0 w280">
                                     <div class="card-body pb-0">
                                         <div class="d-flex py-1">
-                                            <img class="avatar rounded-circle" src="assets/images/profile_av.png"
-                                                alt="profile">
+                                            <img class="avatar rounded-circle"
+                                                src="{{ asset('/storage/' . Auth::user()->image_url) }}" alt="profile">
                                             <div class="flex-fill ms-3">
-                                                <p class="mb-0"><span class="font-weight-bold">Dylan Hunter</span></p>
-                                                <small class="">Dylan.hunter@gmail.com</small>
+                                                <p class="mb-0"><span
+                                                        class="font-weight-bold">{{ Auth::user()->name }}</span></p>
+                                                <small class="">{{ Auth::user()->email }}</small>
                                             </div>
                                         </div>
 
@@ -41,20 +42,16 @@
                                         </div>
                                     </div>
                                     <div class="list-group m-2 ">
-                                        <a href="task.html" class="list-group-item list-group-item-action border-0 "><i
-                                                class="icofont-tasks fs-5 me-3"></i>My Task</a>
-                                        <a href="members.html"
-                                            class="list-group-item list-group-item-action border-0 "><i
-                                                class="icofont-ui-user-group fs-6 me-3"></i>members</a>
-                                        <a href="ui-elements/auth-signin.html"
-                                            class="list-group-item list-group-item-action border-0 "><i
-                                                class="icofont-logout fs-6 me-3"></i>Signout</a>
+                                        <form action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <button type="submit"
+                                                class="list-group-item list-group-item-action border-0">
+                                                <i class="icofont-logout fs-6 me-3"></i>Signout
+                                            </button>
+                                        </form>
                                         <div>
                                             <hr class="dropdown-divider border-dark">
                                         </div>
-                                        <a href="ui-elements/auth-signup.html"
-                                            class="list-group-item list-group-item-action border-0 "><i
-                                                class="icofont-contact-add fs-5 me-3"></i>Add personal account</a>
                                     </div>
                                 </div>
                             </div>
@@ -120,29 +117,80 @@
                                     </thead>
                                     <tbody>
                                         <!-- Data Statis -->
-                                        <tr>
-                                            <td>
-                                                <img src="{{ asset('/assets/img/danau.jpg') }}" alt="" class="avatar rounded-circle" style="width: 50px; height: 50px;">
-                                            </td>
-                                            <td>Rafi Tour</td>
-                                            <td>6281234567890</td>
-                                            <td>@rafitour</td>
-                                            <td>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#edittourguide">
-                                                    <i class="icofont-edit text-success"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#deletetourguide">
-                                                    <i class="icofont-ui-delete text-danger"></i>
-                                                </button>
-                                                <a href="https://wa.me/6281234567890" class="btn btn-sm btn-outline-secondary">
-                                                    <i class="icofont-whatsapp text-success"></i>
-                                                </a>
-                                                <a href="https://instagram.com/rafitour" class="btn btn-sm btn-outline-secondary">
-                                                    <i class="icofont-instagram text-danger"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <!-- Tambahkan data statis lainnya jika diperlukan -->
+                                        @foreach ($tourGuides as $tourGuide)
+                                            <tr>
+                                                <td>
+                                                    <img src="{{ asset('/storage/' . $tourGuide->image_profile) }}"
+                                                        alt="" class="avatar rounded-circle"
+                                                        style="width: 50px; height: 50px;">
+                                                </td>
+                                                <td>{{ $tourGuide->name }}</td>
+                                                <td>{{ $tourGuide->phone }}</td>
+                                                <td>{{ $tourGuide->instagram }}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-outline-secondary"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#edittourguide{{ $tourGuide->id }}">
+                                                        <i class="icofont-edit text-success"></i>
+                                                    </button>
+                                                    <form action="{{ route('tour-guides.delete', $tourGuide->id) }}"
+                                                        method="POST" class="d-inline">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-sm btn-outline-danger" type="submit">
+                                                            <i class="icofont-ui-delete text-danger"></i>
+                                                        </button>
+                                                    </form>
+                                                    <a href="{{ $tourGuide->phone }}"
+                                                        class="btn btn-sm btn-outline-secondary">
+                                                        <i class="icofont-whatsapp text-success"></i>
+                                                    </a>
+                                                    <a href="{{ $tourGuide->instagram }}"
+                                                        class="btn btn-sm btn-outline-secondary">
+                                                        <i class="icofont-instagram text-danger"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <x-admin.modal id="edittourguide{{ $tourGuide->id }}"
+                                                title="Edit Tour Guide"
+                                                action="{{ route('tour-guides.update', $tourGuide->id) }}"
+                                                method="PUT" size="modal-lg modal-dialog-scrollable"
+                                                :fields="[
+                                                    [
+                                                        'type' => 'hidden',
+                                                        'name' => 'id',
+                                                        'value' => $tourGuide->id,
+                                                    ],
+                                                    [
+                                                        'type' => 'text',
+                                                        'name' => 'name',
+                                                        'label' => 'Nama Tour Guide',
+                                                        'required' => true,
+                                                        'value' => $tourGuide->name,
+                                                    ],
+                                                    [
+                                                        'type' => 'tel',
+                                                        'name' => 'phone',
+                                                        'label' => 'WhatsApp',
+                                                        'required' => true,
+                                                        'value' => $tourGuide->phone,
+                                                    ],
+                                                    [
+                                                        'type' => 'text',
+                                                        'name' => 'instagram',
+                                                        'label' => 'Instagram',
+                                                        'required' => true,
+                                                        'value' => $tourGuide->instagram,
+                                                    ],
+                                                    [
+                                                        'type' => 'file',
+                                                        'name' => 'image_profile',
+                                                        'label' => 'Foto Profile',
+                                                        'help' => 'Biarkan kosong jika tidak ingin mengubah foto',
+                                                        'value' => json_encode([$tourGuide->image_profile]),
+                                                    ],
+                                                ]" submitText="Update" />
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -153,106 +201,60 @@
         </div>
 
         <!-- Create Tour Guide Modal -->
-        <x-admin.modal 
-            id="addtourguide"
-            title="Tambah Tour Guide"
-            size="modal-lg modal-dialog-scrollable"
-            :fields="[
+        <x-admin.modal id="addtourguide" title="Tambah Tour Guide" size="modal-lg modal-dialog-scrollable"
+            action="{{ route('tour-guides.add') }}" :fields="[
                 [
                     'type' => 'text',
-                    'name' => 'nama',
+                    'name' => 'name',
                     'label' => 'Nama Tour Guide',
                     'placeholder' => 'Masukkan nama tour guide...',
-                    'required' => true
+                    'required' => true,
                 ],
                 [
                     'type' => 'tel',
-                    'name' => 'whatsapp',
+                    'name' => 'phone',
                     'label' => 'WhatsApp',
                     'placeholder' => '628xxxxxxxxxx',
-                    'required' => true
+                    'required' => true,
                 ],
                 [
                     'type' => 'text',
                     'name' => 'instagram',
                     'label' => 'Instagram',
-                    'placeholder' => '@username',
-                    'required' => true
+                    'placeholder' => 'Flyychmoreee',
+                    'required' => true,
                 ],
                 [
                     'type' => 'file',
-                    'name' => 'foto',
+                    'name' => 'image_profile',
                     'label' => 'Foto Profile',
-                    'required' => true
-                ]
-            ]"
-        />
+                    'required' => true,
+                ],
+            ]" />
 
         <!-- Edit Tour Guide Modal -->
-        <x-admin.modal 
-            id="edittourguide"
-            title="Edit Tour Guide"
-            method="PUT"
-            size="modal-lg modal-dialog-scrollable"
-            :fields="[
-                [
-                    'type' => 'hidden',
-                    'name' => 'id'
-                ],
-                [
-                    'type' => 'text',
-                    'name' => 'nama',
-                    'label' => 'Nama Tour Guide',
-                    'required' => true
-                ],
-                [
-                    'type' => 'tel',
-                    'name' => 'whatsapp',
-                    'label' => 'WhatsApp',
-                    'required' => true
-                ],
-                [
-                    'type' => 'text',
-                    'name' => 'instagram',
-                    'label' => 'Instagram',
-                    'required' => true
-                ],
-                [
-                    'type' => 'file',
-                    'name' => 'foto',
-                    'label' => 'Foto Profile',
-                    'help' => 'Biarkan kosong jika tidak ingin mengubah foto'
-                ]
-            ]"
-            submitText="Update"
-        />
+
 
         <!-- Delete Tour Guide Modal -->
-        <x-admin.modal 
-            id="deletetourguide"
-            title="Hapus Tour Guide"
-            size="modal-md modal-dialog-scrollable"
-            :isDelete="true"
-            :bodyText="'Apakah Anda yakin ingin menghapus tour guide ini?'"
-        />
+        <x-admin.modal id="deletetourguide" title="Hapus Tour Guide" size="modal-md modal-dialog-scrollable"
+            :isDelete="true" :bodyText="'Apakah Anda yakin ingin menghapus tour guide ini?'" />
     </div>
     </div>
 
-<!-- Delete About Modal -->
-<x-admin.modal 
-    id="deleteabout"
-    title="Hapus About"
-    size="modal-md"
-    :isDelete="true"
-    :bodyText="'Apakah Anda yakin ingin menghapus item ini?'"
-/>
+    <!-- Delete About Modal -->
+
     <script>
         $(document).ready(function() {
             $('#tourGuideTable').DataTable({
                 responsive: true,
-                columnDefs: [
-                    { targets: [-1], orderable: false },
-                    { targets: [0], orderable: false }
+                columnDefs: [{
+                        targets: [-1],
+                        orderable: false
+                    },
+                    {
+                        targets: [0],
+                        orderable: false
+                    }
                 ]
             });
         });

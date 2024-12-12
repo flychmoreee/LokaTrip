@@ -10,9 +10,10 @@
                                 <div class="card">
                                     <div class="card-body tryal column">
                                         <div class="col-xl-7 col-sm-6">
-                                            <h2> Hai User, Selamat datang kembali di Lokatrip</h2>
+                                            <h2> Hai {{ Auth::user()->name }}, Selamat datang kembali di Lokatrip</h2>
                                             <span>Temukan destinasi wisata dan nikmati liburanmu bersama Lokatrip</span>
-                                            <a href="javascript:void(0);" class="btn btn-rounded  fs-18 font-w500">Cari
+                                            <a href="{{ route('user.destination') }}"
+                                                class="btn btn-rounded  fs-18 font-w500">Cari
                                                 Destinasi Wisata</a>
                                         </div>
                                     </div>
@@ -72,22 +73,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Rekomendasi Pariwisata Card -->
-                            {{-- <div class="col-xl-6 col-sm-6">
-                                <div class="card feature-card d-flex flex-column align-items-center text-center">
-                                    <!-- Icon -->
-                                    <div class="icon mb-3 mt-2">
-                                        <i class="fas fa-camera fa-2x text-white"></i>
-                                    </div>
-                                    <!-- Content -->
-                                    <div class="mb-1">
-                                        <h5 class="text-white mb-2">Rekomendasi Pariwisata</h5>
-                                        <p class="text-muted mb-0">
-                                            Jelajahi destinasi terbaik yang dipilihkan AI untuk anda.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -98,88 +83,34 @@
     {{-- Card Wisata --}}
     <div class="container-fluid pt-0">
 
-
-        <div class="row" style="gap: 5px;">
-            <div class="col-lg-12 col-xl-6 destination">
-                <div class="card" style="cursor:pointer;">
-                    <div class="card-body">
-                        <div class="row m-b-30">
-                            <div class="col-md-5 col-xxl-12">
-                                <div class="new-arrival-product mb-4 mb-xxl-4 mb-md-0">
-                                    <div class="new-arrivals-img-contnent">
-                                        <img class="img-fluid" src="{{ asset('/assets/img/danau.jpg') }}"
-                                            alt="">
+        @foreach ($destinations as $destination)
+            <div class="row" style="gap: 5px;">
+                <div class="col-lg-12 col-xl-6 destination">
+                    <div class="card" style="cursor:pointer;">
+                        <div class="card-body">
+                            <div class="row m-b-30">
+                                <div class="col-md-5 col-xxl-12">
+                                    <div class="new-arrival-product mb-4 mb-xxl-4 mb-md-0">
+                                        <div class="new-arrivals-img-contnent">
+                                            <img class="img-fluid"
+                                                src="{{ asset('storage/' . $destination->thumbnail) }}" alt="">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-7 col-xxl-12">
-                                <div class="new-arrival-content position-relative">
-                                    <h4><a href="{{ route('user.detail-product') }}">Danau Toba</a></h4>
-                                    <p>Lokasi: <span class="item">Medan, Sumatera Utara</span></p>
-
+                                <div class="col-md-7 col-xxl-12">
+                                    <div class="new-arrival-content position-relative">
+                                        <h4><a
+                                                href="{{ route('user.detail-product', ['id' => $destination->id]) }}">{{ $destination->name }}</a>
+                                        </h4>
+                                        <p>Lokasi: <span class="item">{{ $destination->location }}</span></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12 col-xl-6 destination">
-                <div class="card" style="cursor:pointer;">
-                    <div class="card-body">
-                        <div class="row m-b-30">
-                            <div class="col-md-5 col-xxl-12">
-                                <div class="new-arrival-product mb-4 mb-xxl-4 mb-md-0">
-                                    <div class="new-arrivals-img-contnent">
-                                        <img class="img-fluid" src="{{ asset('/assets/img/gunung.jpg') }}"
-                                            alt="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-7 col-xxl-12">
-                                <div class="new-arrival-content position-relative">
-                                    <h4><a href="{{ route('user.detail-product') }}">Gunung Bromo</a></h4>
-                                    <p>Lokasi: <span class="item">Probolinggo, Jawa Timur</span></p>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-12 col-xl-6 destination">
-                <div class="card" style="cursor:pointer;">
-                    <div class="card-body">
-                        <div class="row m-b-30">
-                            <div class="col-md-5 col-xxl-12">
-                                <div class="new-arrival-product mb-4 mb-xxl-4 mb-md-0">
-                                    <div class="new-arrivals-img-contnent">
-                                        <img class="img-fluid" src="{{ asset('/assets/img/pantai-bingin.jpg') }}"
-                                            alt="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-7 col-xxl-12">
-                                <div class="new-arrival-content position-relative">
-                                    <h4><a href="{{ route('user.detail-product') }}">Pantai Bingin</a></h4>
-                                    <p>Lokasi: <span class="item">Badung, Bali</span></p>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Lihat Selengkapnya -->
-            <div class="row">
-                <div class="col-12 d-flex justify-content-end align-items-center ms-5 mb-3">
-                    <a href="/destinasi" class="btn btn-link fs-16 font-w500">
-                        Lihat Selengkapnya
-                    </a>
-                </div>
-            </div>
-
-        </div>
+        @endforeach
     </div>
 </div>
 

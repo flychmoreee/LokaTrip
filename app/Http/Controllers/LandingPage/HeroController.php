@@ -11,58 +11,49 @@ class HeroController extends Controller
 {
     public function index()
     {
-        $heroes = Hero::all(); // Ambil semua data hero
-        return view('hero.index', compact('heroes'));
+        $heroes = Hero::all();
+        return view('components.admin.section.landingpage.hero', compact('heroes'));
     }
 
     public function create()
     {
-        return view('hero.create');
+        return view('components.admin.section.landingpage.hero');
     }
 
-    public function store(Request $request)
+    public function addHero(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'hero_image' => 'required|image|mimes:jpg,jpeg,png',
-            'card_title' => 'required|string|max:255',
-            'card_image' => 'required|image|mimes:jpg,jpeg,png',
+            'hero_image' => 'required|image|mimes:jpg,jpeg,png|max:5024',
         ]);
 
         $heroImagePath = $request->file('hero_image')->store('hero_images', 'public');
-        $cardImagePath = $request->file('card_image')->store('card_images', 'public');
 
         Hero::create([
             'name' => $request->name,
             'description' => $request->description,
             'hero_image' => $heroImagePath,
-            'card_title' => $request->card_title,
-            'card_image' => $cardImagePath,
         ]);
 
-        return redirect()->route('heroes.index');
+        return redirect()->route('admin.hero');
     }
 
     public function edit(Hero $hero)
     {
-        return view('hero.edit', compact('hero'));
+        return view('components.admin.section.landingpage.hero', compact('hero'));
     }
 
-    public function update(Request $request, Hero $hero)
+    public function updateHero(Request $request, Hero $hero)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'hero_image' => 'nullable|image|mimes:jpg,jpeg,png',
-            'card_title' => 'required|string|max:255',
-            'card_image' => 'nullable|image|mimes:jpg,jpeg,png',
+            'hero_image' => 'nullable|image|mimes:jpg,jpeg,png|max:5024',
         ]);
 
         $hero->name = $request->name;
         $hero->description = $request->description;
-        $hero->card_title = $request->card_title;
-
         if ($request->hasFile('hero_image')) {
             // Hapus gambar lama jika ada
             if ($hero->hero_image) {
@@ -72,21 +63,12 @@ class HeroController extends Controller
             $hero->hero_image = $heroImagePath;
         }
 
-        if ($request->hasFile('card_image')) {
-            // Hapus gambar lama jika ada
-            if ($hero->card_image) {
-                Storage::disk('public')->delete($hero->card_image);
-            }
-            $cardImagePath = $request->file('card_image')->store('card_images', 'public');
-            $hero->card_image = $cardImagePath;
-        }
-
         $hero->save();
 
-        return redirect()->route('heroes.index');
+        return redirect()->route('admin.hero');
     }
 
-    public function destroy(Hero $hero)
+    public function deleteHero(Hero $hero)
     {
         // Hapus gambar dari storage jika ada
         if ($hero->hero_image) {
@@ -97,6 +79,6 @@ class HeroController extends Controller
         }
 
         $hero->delete();
-        return redirect()->route('heroes.index');
+        return redirect()->route('admin.hero');
     }
 }

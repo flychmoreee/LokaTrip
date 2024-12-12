@@ -13,12 +13,6 @@
                      <a href="#about" class="nav__link">Tentang</a>
                  </li>
                  <li class="nav__item">
-                     <a href="#feature" class="nav__link">Fitur</a>
-                 </li>
-                 <li class="nav__item">
-                     <a href="#popular" class="nav__link">Populer</a>
-                 </li>
-                 <li class="nav__item">
                      <a href="#testimonial" class="nav__link">Testimoni</a>
                  </li>
                  <li class="nav__item">

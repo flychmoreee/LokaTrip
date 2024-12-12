@@ -16,8 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('hero_image');
-            $table->string('card_title');
-            $table->string('card_image');
             $table->timestamps();
         });
     }

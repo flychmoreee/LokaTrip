@@ -11,15 +11,15 @@ class FaqController extends Controller
     public function index()
     {
         $faqs = FAQ::all();
-        return view('faq.index', compact('faqs'));
+        return view('components.admin.section.landingpage.faq', compact('faqs'));
     }
 
     public function create()
     {
-        return view('faq.create');
+        return view('components.admin.section.landingpage.faq');
     }
 
-    public function store(Request $request)
+    public function addFaq(Request $request)
     {
         $request->validate([
             'question' => 'required|string|max:255',
@@ -31,15 +31,15 @@ class FaqController extends Controller
             'answer' => $request->answer,
         ]);
 
-        return redirect()->route('faq.index');
+        return redirect()->route('admin.faq');
     }
 
-    public function edit(FAQ $faq)
+    public function editFaq(FAQ $faq)
     {
-        return view('faq.edit', compact('faq'));
+        return view('components.admin.section.landingpage.faq', compact('faq'));
     }
 
-    public function update(Request $request, FAQ $faq)
+    public function updateFaq(Request $request, FAQ $faq)
     {
         $request->validate([
             'question' => 'required|string|max:255',
@@ -51,12 +51,12 @@ class FaqController extends Controller
             'answer' => $request->answer,
         ]);
 
-        return redirect()->route('faq.index');
+        return redirect()->route('admin.faq');
     }
 
-    public function destroy(FAQ $faq)
+    public function deleteFaq(FAQ $faq)
     {
         $faq->delete();
-        return redirect()->route('faq.index');
+        return redirect()->route('admin.faq');
     }
 }

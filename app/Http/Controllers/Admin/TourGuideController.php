@@ -5,49 +5,101 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\TourGuides;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class TourGuideController extends Controller
 {
-    public function store(Request $request)
+    public function addTourGuide(Request $request)
     {
-        $validated = $request->validate([
-            'nama' => 'required|string|max:255',
-            'whatsapp' => 'required|string|max:15',
-            'instagram' => 'required|string|max:255',
-            'foto' => 'nullable|image|max:10048'
-        ]);
-
-        if ($request->hasFile('foto')) {
-            $validated['foto'] = $request->file('foto')->store('tour-guides', 'public');
+        Log::info($request->all());
+        try {
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'phone' => 'required|string',
+                'instagram' => 'required|string',
+                'image_profile' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            Log::info('Validasi berhasil');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            Log::error('Validasi gagal: ' . json_encode($e->errors()));
+            return redirect()->back()->withErrors($e->errors())->withInput();
         }
 
-        TourGuides::create($validated);
 
-        return response()->json(['message' => 'Tour guide created successfully'], 201);
+        // Store image profile in 'public' disk
+        $imageName = time() . '_' . $request->file('image_profile')->getClientOriginalName();
+        $imagePath = $request->file('image_profile')->storeAs("public/tour-guide/", $imageName);
+
+        // Remove 'public/' from path for database storage
+        $relativePath = str_replace('public/', '', $imagePath);
+
+        TourGuides::create([
+            'name' => $request->name,
+            'phone' => $this->convertPhoneToWaLink($request->phone),
+            'instagram' => $this->convertInstagramToLink($request->instagram),
+            'image_profile' => $relativePath,
+        ]);
+
+        return redirect()->route('admin.tour-guides')->with('success', 'Tour guide created successfully.');
     }
 
-    public function update(Request $request)
+
+    public function updateTourGuide(Request $request, TourGuides $tourGuide)
     {
         $request->validate([
-            'editId' => 'required|exists:tour_guides,id',
-            'editNama' => 'required|string|max:255',
-            'editWhatsapp' => 'required|string|max:15',
-            'editInstagram' => 'required|string|max:255',
-            'editFoto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10048',
+            'name' => 'required|string|max:255',
+            'phone' => 'required|string',
+            'instagram' => 'required|string',
+            'image_profile' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $tourGuide = TourGuides::find($request->editId);
-        $tourGuide->nama = $request->editNama;
-        $tourGuide->whatsapp = $request->editWhatsapp;
-        $tourGuide->instagram = $request->editInstagram;
+        $name = $request->name;
+        $imagePath = $tourGuide->image_profile;
 
-        if ($request->hasFile('editFoto')) {
-            $path = $request->file('editFoto')->store('tour-guides', 'public');
-            $tourGuide->foto = $path;
+        if ($request->hasFile('image_profile')) {
+            // Hapus gambar lama
+            Storage::delete("public/{$tourGuide->image_profile}");
+
+            // Simpan gambar baru
+            $imageName = time() . '_' . $request->file('image_profile')->getClientOriginalName();
+            $imagePath = $request->file('image_profile')->storeAs("public/tour-guide/$name", $imageName);
         }
 
-        $tourGuide->save();
+        $tourGuide->update([
+            'name' => $request->name,
+            'phone' => $tourGuide->phone ?? $this->convertPhoneToWaLink($request->phone),
+            'instagram' => $tourGuide->instagram ?? $this->convertInstagramToLink($request->instagram),
+            'image_profile' => $imagePath,
+        ]);
 
-        return response()->json(['message' => 'Tour guide updated successfully']);
+        return redirect()->route('admin.tour-guides')->with('success', 'Tour guide updated successfully.');
+    }
+
+    public function deleteTourGuide(TourGuides $tourGuide)
+    {
+        // Hapus file gambar
+        Storage::delete("public/{$tourGuide->image_profile}");
+
+        // Hapus data dari database
+        $tourGuide->delete();
+
+        return redirect()->route('admin.tour-guides')->with('success', 'Tour guide deleted successfully.');
+    }
+
+    private function convertPhoneToWaLink($phone)
+    {
+        $phone = preg_replace('/\D/', '', $phone);
+
+        if (substr($phone, 0, 1) === '0') {
+            $phone = '62' . substr($phone, 1);
+        }
+
+        return "https://wa.me/$phone";
+    }
+
+    private function convertInstagramToLink($instagram)
+    {
+        return "https://www.instagram.com/$instagram";
     }
 }
