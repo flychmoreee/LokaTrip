@@ -59,10 +59,7 @@
                     <!-- Search -->
                     <div class="order-0 col-lg-4 col-md-4 col-sm-12 col-12 mb-3 mb-md-0 ">
                         <div class="input-group flex-nowrap input-group-lg">
-                            <button type="button" class="input-group-text" id="addon-wrapping"><i
-                                    class="fa fa-search"></i></button>
-                            <input type="search" class="form-control" placeholder="Cari destinasi..."
-                                aria-label="search" aria-describedby="addon-wrapping">
+                           
                         </div>
                     </div>
                 </div>

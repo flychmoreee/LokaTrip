@@ -13,9 +13,6 @@
                      <a href="#about" class="nav__link">Tentang</a>
                  </li>
                  <li class="nav__item">
-                     <a href="#testimonial" class="nav__link">Testimoni</a>
-                 </li>
-                 <li class="nav__item">
                      <a href="#FAQ" class="nav__link">FAQ</a>
                  </li>
              </ul>

@@ -26,7 +26,7 @@
                       </ul>
                   </div>
                   <div>
-                      <h3 class="footer__title">Samisu</h3>
+                      <h3 class="footer__title">Company</h3>
                       <ul class="footer__links">
                           <li>
                               <a href="#FAQ" class="footer__link">FAQ</a>

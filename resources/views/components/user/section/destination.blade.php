@@ -86,24 +86,7 @@
                 </div>
             </div>
 
-            <!-- Search and Categories -->
-            <div class="row mb-4">
-                <!-- Search Bar -->
-                <div class="col-md-6 mb-4">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Cari destinasi...">
-                        <button class="btn btn-primary" type="button">Cari</button>
-                    </div>
-                </div>
-                <!-- Categories -->
-                <div class="col-md-6 d-flex justify-content-end mb-4">
-                    <button class="btn btn-outline-primary mx-1 p-3" type="button">Populer</button>
-                    <button class="btn btn-outline-primary mx-1 p-3" type="button">Gunung</button>
-                    <button class="btn btn-outline-primary mx-1 p-3" type="button">Pantai</button>
-                    <button class="btn btn-outline-primary mx-1 p-3" type="button">Hutan</button>
-                    <button class="btn btn-outline-primary mx-1 p-3" type="button">Danau</button>
-                </div>
-            </div>
+           
             <!-- Card Section -->
             <div class="row">
                 {{-- card --}}

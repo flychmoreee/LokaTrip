@@ -6,11 +6,13 @@
 
               <div class="feature__item">
                   <span class="feature__icon">
-                      <i class="ri-coupon-2-fill"></i>
+                      <i class="ri-suitcase-3-fill"></i>
                   </span>
-                  <h3>Booking Tiket Mudah</h3>
-                  <p class="feature__description">Mempermudah anda dalam memesan tiket perjalanan dan menyediakan opsi
-                      untuk memilih tour guide yang sesuai dengan kebutuhan perjalanan anda.</p>
+                  <h3>Perencanaan Perjalanan</h3>
+                  <p class="feature__description">Nikmati kemudahan merencanakan perjalanan Anda dengan bantuan AI yang
+                      dapat menyusun itinerary lengkap,
+                      termasuk rekomendasi tempat wisata, estimasi waktu dan biaya.
+                  </p>
               </div>
 
               <div class="feature__item">
